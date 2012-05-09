@@ -16,17 +16,18 @@ import org.junit.Test;
  */
 public class NilsimsaTest {
 	
-	private final static String CONTENT_ENCODING = "UTF-8";
+	private final static String CONTENT_ENCODING = "ISO-8859-1";
 	private static List<String> TEST_DATA = Arrays.asList( 
-			"19b3a8581437480de15031b4f286ef015c0e8631d960b4f62f63a95bce87f06f content-penguins.txt",
-			"48b525408661294d953200b0728582654c03537349a3675c45390150f736e66f content-reading-stores.txt",
-			"73f52da90660185e411102b9eb8129e1e42763f3496036647e6120d5e7b7e0ff content-scottish-independence.txt",
-			"7ff0a9b98644590ca1038895d984a321668b4a6151733f642e2322d0efb2e2ca content-uk-pollution-outsourcing.txt",
-			"5bb12c081271095d90530aa1da808171766313f1414c6fec2f202a14f656e4ed content-unrelated1.txt",
-			"5fb405b81610094cc15196e1fa852c7506ac42f349325ccd2e1c0a12e637644e content-unrelated2.txt",
-			"6f3223c88601014d94134afdfb88ba314cae19f149327ae4ea212a106312da6f content-unrelated3.txt",
-			"6bb4058986700995805318fdfac4013144a30bf3e1747de42d20cf10ee334c6d content-unrelated4.txt",
-			"5fb225e8027089fcd6530ab3d090c981642f08a549207cd52d222a04ea36e6ef content-wohlg.txt");
+		"73302df80673894c115249b1f880abb1ec2b09f1c9726e642b690291e636fe6f c",
+		"63f02df81323896c51419d71da922839ede04df1c920ff042b238750e61268ef hmac",
+		"5fb02d781633a84ed3420ab1f2922931cca119f14bba6ce42f3b2010e23662ef java",
+		"7bb42c980372a18f3113b1f5d29035a1fd2b79b5d9326c452b4023d0e212e14f lsh",
+		"7fb024b80683894c751219b5d2882d316caa48e14bb0eec42f380290e67468ef md5",
+		"cb3025980276894c63120890da8029b1446329f1c972f6642c292b91e636766f perl",
+		"5b3025781212884ee90359b1fb842931ec2b39f1592264642f2d6a95e636f2eb python",
+		"5e302d3002d2894ef30259b1f8902f31ec2b5bb14bd2664429386a91e272f26f ruby",
+		"6bb024d80623884d51521df1da8c2121cca849e1cbf37e442f3d0a98e637606f sha1"
+	);
 
 	private static Map<String, String> testDocuments;
 
@@ -57,7 +58,7 @@ public class NilsimsaTest {
  		for (String testData: TEST_DATA) {
  			testSet = testData.split(" ");
  			try {
- 				URL resource = NilsimsaTest.class.getResource("test/"+ testSet[1]);
+ 				URL resource = NilsimsaTest.class.getResource("test/wiki-"+ testSet[1] + ".txt");
 				documentContent = FileUtils.readFileToString(
 						new File( resource.getFile()), CONTENT_ENCODING);
 				result.put( testSet[0], documentContent);

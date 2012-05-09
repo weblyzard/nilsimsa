@@ -1,0 +1,101 @@
+Locality-sensitive hashing
+From Wikipedia, the free encyclopedia
+  (Redirected from Locality sensitive hashing)
+Jump to: navigation, search
+
+Locality-sensitive hashing (LSH) is a method of performing probabilistic dimension reduction of high-dimensional data. The basic idea is to hash the input items so that similar items are mapped to the same buckets with high probability (the number of buckets being much smaller than the universe of possible input items). Note how locality-sensitive hashing, in many ways, mirrors data clustering.
+Contents
+
+    1 Definition
+    2 Applications
+    3 Methods
+        3.1 Bit sampling for Hamming distance
+        3.2 Min-wise independent permutations
+        3.3 Random projection
+        3.4 Stable distributions
+    4 LSH algorithm for nearest neighbor search
+    5 See also
+    6 References
+    7 Further reading
+    8 External links
+
+Definition
+
+An LSH family \mathcal F is defined for a metric space \mathcal M =(M,d), a threshold R>0 and an approximation factor c>1. An LSH family [1] [2] \mathcal F is a family of functions h:{\mathcal M}\to S[clarification needed] satisfying the following conditions for any two points p,q\in {\mathcal M}, and a function h[clarification needed] chosen uniformly at random from \mathcal F:
+
+    if d(p,q) \le R, then h(p)=h(q) (i.e.,p and q collide) with probability at least P_1,
+    if d(p,q) \ge cR, then h(p)=h(q) with probability at most P_2.
+
+A family is interesting when P_1>P_2. Such a family \mathcal F is called (R,cR,P_1,P_2)-sensitive.
+
+An alternative definition[3] is defined with respect to a universe of items U that have a similarity function \phi : U \times U \to [0,1]. An LSH scheme is a family of hash functions H coupled with a probability distribution D over the functions such that a function h \in H chosen according to D satisfies the property that Pr_{h \in H} [h(a) = h(b)] = \phi(a,b) for any a,b \in U.
+Applications
+
+LSH has been applied to several problem domains including[citation needed]
+
+    Near-duplicate detection
+    Image similarity identification
+    Gene expression similarity identification
+    Audio similarity identification
+
+Methods
+Bit sampling for Hamming distance
+
+One of the easiest ways to construct an LSH family is by bit sampling [2]. This approach works for the Hamming distance over d-dimensional vectors \{0,1\}^d. Here, the family \mathcal F of hash functions is simply the family of all the projections of points on one of the d coordinates, i.e., {\mathcal F}=\{h:\{0,1\}^d\to \{0,1\}\mid h(x)=x_i,i =1 ... d\}, where x_i is the ith coordinate of x. A random function h from {\mathcal F} simply selects a random bit from the input point. This family has the following parameters: P_1=1-R/d, P_2=1-cR/d.
+Min-wise independent permutations
+Main article: MinHash
+
+Suppose U is composed of subsets of some ground set of enumerable items S and the similarity function of interest is the Jaccard index J. If \pi is a permutation on the indices of S, for A \subseteq S let h(A) = \min_{a \in A} \{ \pi(a) \}. Each possible choice of \pi defines a single hash function h mapping input sets to integers.
+
+Define the function family H to be the set of all such functions and let D be the uniform distribution. Given two sets A,B \subseteq S the event that h(A) = h(B) corresponds exactly to the event that the minimizer of \pi lies inside A \bigcap B. As h was chosen uniformly at random, Pr[h(A) = h(B)] = J(A,B)\, and (H,D)\, define an LSH scheme for the Jaccard index.
+
+Because the symmetric group on n elements has size n!, choosing a truly random permutation from the full symmetric group is infeasible for even moderately sized n. Because of this fact, there has been significant work on finding a family of permutations that is "min-wise independent" - a permutation family for which each element of the domain has equal probability of being the minimum under a randomly chosen \pi. It has been established that a min-wise independent family of permutations is at least of size lcm(1, 2, ..., n) \ge e^{n-o(n)}.[4] and that this boundary is tight[5]
+
+Because min-wise independent families are too big for practical applications, two variant notions of min-wise independence are introduced: restricted min-wise independent permutations families, and approximate min-wise independent families. Restricted min-wise independence is the min-wise independence property restricted to certain sets of cardinality at most k [6]. Approximate min-wise independence differs from the property by at most a fixed \epsilon[7].
+Random projection
+
+The random projection method of LSH is designed to approximate the cosine distance between vectors. The basic idea of this technique is to choose a random hyperplane (defined by a normal unit vector r) at the outset and use the hyperplane to hash input vectors.
+
+Given an input vector v and a hyperplane defined by r, we let h(v) = sgn(v \cdot r). That is, h(v) = \pm 1 depending on which side of the hyperplane v lies.
+
+Each possible choice of r defines a single function. Let H be the set of all such functions and let D be the uniform distribution once again. It is not difficult to prove that, for two vectors u,v, Pr[h(u) = h(v)] = 1 - \frac{\theta(u,v)}{\pi}, where \theta(u,v) is the angle between u and v. 1 - \frac{\theta(u,v)}{\pi} is closely related to \cos(\theta(u,v)).
+
+In this instance hashing produces only a single bit. Two vectors' bits match with probability proportional to the cosine of the angle between them.
+Stable distributions
+
+The hash function [8] h_{\mathbf{a},b} (\boldsymbol{\upsilon}) : \mathcal{R}^d \to \mathcal{N} maps a d dimensional vector \boldsymbol{\upsilon} onto a set of integers. Each hash function in the family is indexed by a choice of random \mathbf{a} and b where \mathbf{a} is a d dimensional vector with entries chosen independently from a stable distribution and b is a real number chosen uniformly from the range [0,r]. For a fixed \mathbf{a},b the hash function h_{\mathbf{a},b} is given by h_{\mathbf{a},b} (\boldsymbol{\upsilon}) = \left \lfloor \frac{\mathbf{a}\cdot \boldsymbol{\upsilon}+b}{r} \right \rfloor .
+
+Other construction methods for hash functions have been proposed to better fit the data. [9] In particular k-means hash functions are better in practice than projection-based hash functions, but without any theoretical guarantee.
+LSH algorithm for nearest neighbor search
+
+One of the main application of LSH is to provide efficient nearest neighbor search algorithms. Consider any LSH family \mathcal F. The algorithm has two main parameters: the width parameter k and the number of hash tables L.
+
+In the first step, we define a new family \mathcal G of hash functions g, where each function g is obtained by concatenating k functions h_1,...,h_k from \mathcal F, i.e., g(p)=[h_1(p), ...,h_k(p)]. In other words, a random hash function g is obtained by concatenating k randomly chosen hash functions from \mathcal F. The algorithm then constructs L hash tables, each corresponding to a different randomly chosen hash function g.
+
+In the preprocessing step we hash all n points from the data set S into each of the L hash tables. Given that the resulting hash tables have only n non-zero entries, one can reduce the amount of memory used per each hash table to O(n) using standard hash functions.
+
+Given a query point q, the algorithm iterates over the L hash functions g. For each g considered, it retrieves the data points that are hashed into the same bucket as q. The process is stopped as soon as a point within distance cR from q is found.
+
+Given the parameters k and L, the algorithm has the following performance guarantees:
+
+    preprocessing time: O(nLkt), where t is the time to evaluate a function h\in \mathcal F on an input point p;
+    space: O(nL), plus the space for storing data points;
+    query time: O(L(kt+dnP_2^k));
+    the algorithm succeeds in finding a point within distance cR from q (if it exists) with probability at least 1 - ( 1 - P_1^k ) ^ L;
+
+For a fixed approximation ratio c=1+\epsilon and probabilities P_1 and P_2, one can set k={\log n \over \log 1/P_2} and L = n^{\rho}, where \rho={\log P_1\over \log P_2}. Then one obtains the following performance guarantees:
+
+    preprocessing time: O(n^{1+\rho}kt);
+    space: O(n^{1+\rho}), plus the space for storing data points;
+    query time: O(n^{\rho}(kt+d));
+
+See also
+
+    Nearest neighbor search
+    Dimension reduction
+    Principal component analysis
+    Singular value decomposition
+    Curse of dimensionality
+    Cluster analysis
+    Wavelet compression
+    Fourier-related transforms

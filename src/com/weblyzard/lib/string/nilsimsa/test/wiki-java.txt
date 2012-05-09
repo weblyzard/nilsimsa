@@ -1,0 +1,275 @@
+Java (programming language)
+From Wikipedia, the free encyclopedia
+Jump to: navigation, search
+Page semi-protected
+"Java language" redirects here. For the natural language from the Indonesian island of Java, see Javanese language.
+Not to be confused with JavaScript.
+Java Java logo.svg
+Paradigm(s) 	multi-paradigm: object-oriented, structured, imperative, generic, reflective
+Appeared in 	1995
+Designed by 	James Gosling and
+Sun Microsystems
+Developer 	Oracle Corporation
+Stable release 	Java Standard Edition 7 Update 4 (1.7.4) (April 26, 2012; 13 days ago)
+Typing discipline 	Static, strong, safe, nominative, manifest
+Major implementations 	OpenJDK, many others
+Dialects 	Generic Java, Pizza
+Influenced by 	Ada 83, C++, C#,[1] Eiffel,[2] Generic Java, Mesa,[3] Modula-3,[4] Oberon,[5] Objective-C,[6] UCSD Pascal,[7][8] Smalltalk
+Influenced 	Ada 2005, BeanShell, C#, Clojure, D, ECMAScript, Groovy, J#, JavaScript, PHP, Python, Scala, Vala
+OS 	Cross-platform (multi-platform)
+License 	GNU General Public License, Java Community Process
+Usual filename extensions 	.java, .class, .jar
+Website 	For Java Developers
+Wikibooks logo Java Programming at Wikibooks
+
+Java is a programming language originally developed by James Gosling at Sun Microsystems (which has since merged into Oracle Corporation) and released in 1995 as a core component of Sun Microsystems' Java platform. The language derives much of its syntax from C and C++ but has a simpler object model and fewer low-level facilities. Java applications are typically compiled to bytecode (class file) that can run on any Java Virtual Machine (JVM) regardless of computer architecture. Java is a general-purpose, concurrent, class-based, object-oriented language that is specifically designed to have as few implementation dependencies as possible. It is intended to let application developers "write once, run anywhere" (WORA), meaning that code that runs on one platform does not need to be recompiled to run on another. Java is currently[date missing] one of the most popular programming languages in use, particularly for client-server web applications, with a reported 10 million users.[9][10]
+
+The original and reference implementation Java compilers, virtual machines, and class libraries were developed by Sun from 1995. As of May 2007, in compliance with the specifications of the Java Community Process, Sun relicensed most of its Java technologies under the GNU General Public License. Others have also developed alternative implementations of these Sun technologies, such as the GNU Compiler for Java and GNU Classpath.
+Contents
+
+    1 History
+        1.1 Principles
+        1.2 Versions
+    2 Practices
+        2.1 Java platform
+            2.1.1 Implementations
+            2.1.2 Performance
+        2.2 Automatic memory management
+    3 Syntax
+    4 Examples
+        4.1 Hello world
+        4.2 A more comprehensive example
+    5 Special classes
+        5.1 Applet
+        5.2 Servlet
+        5.3 JavaServer Pages
+        5.4 Swing application
+        5.5 Generics
+    6 Criticism
+    7 Use by external companies
+        7.1 Google
+    8 Class libraries
+    9 Documentation
+    10 Editions
+    11 See also
+    12 Notes
+    13 References
+    14 External links
+
+History
+See also: Java (software platform)#History
+Duke, the Java mascot
+
+James Gosling, Mike Sheridan, and Patrick Naughton initiated the Java language project in June 1991.[11] Java was originally designed for interactive television, but it was too advanced for the digital cable television industry at the time.[12] The language was initially called Oak after an oak tree that stood outside Gosling's office; it went by the name Green later, and was later renamed Java, from Java coffee, said to be consumed in large quantities by the language's creators.[13] Gosling aimed to implement a virtual machine and a language that had a familiar C/C++ style of notation.[14]
+
+Sun Microsystems released the first public implementation as Java 1.0 in 1995. It promised "Write Once, Run Anywhere" (WORA), providing no-cost run-times on popular platforms. Fairly secure and featuring configurable security, it allowed network- and file-access restrictions. Major web browsers soon incorporated the ability to run Java applets within web pages, and Java quickly became popular. With the advent of Java 2 (released initially as J2SE 1.2 in December 1998–1999), new versions had multiple configurations built for different types of platforms. For example, J2EE targeted enterprise applications and the greatly stripped-down version J2ME for mobile applications (Mobile Java). J2SE designated the Standard Edition. In 2006, for marketing purposes, Sun renamed new J2 versions as Java EE, Java ME, and Java SE, respectively.
+
+In 1997, Sun Microsystems approached the ISO/IEC JTC1 standards body and later the Ecma International to formalize Java, but it soon withdrew from the process.[15] Java remains a de facto standard, controlled through the Java Community Process.[16] At one time, Sun made most of its Java implementations available without charge, despite their proprietary software status. Sun generated revenue from Java through the selling of licenses for specialized products such as the Java Enterprise System. Sun distinguishes between its Software Development Kit (SDK) and Runtime Environment (JRE) (a subset of the SDK); the primary distinction involves the JRE's lack of the compiler, utility programs, and header files.
+
+On November 13, 2006, Sun released much of Java as free and open source software, (FOSS), under the terms of the GNU General Public License (GPL). On May 8, 2007, Sun finished the process, making all of Java's core code available under free software/open-source distribution terms, aside from a small portion of code to which Sun did not hold the copyright.[17]
+
+Sun's vice-president Rich Green said that Sun's ideal role with regards to Java was as an "evangelist."[18] Following Oracle Corporation's acquisition of Sun Microsystems in 2009–2010, Oracle has described itself as the "steward of Java technology with a relentless commitment to fostering a community of participation and transparency".[19] Java software runs on laptops to data centers, game consoles to scientific supercomputers. There are 930 million Java Runtime Environment downloads each year and 3 billion mobile phones run Java.[20] On April 2, 2010, James Gosling resigned from Oracle.[21]
+Principles
+
+There were five primary goals in the creation of the Java language:[22]
+
+    It should be "simple, object-oriented and familiar"
+    It should be "robust and secure"
+    It should be "architecture-neutral and portable"
+    It should execute with "high performance"
+    It should be "interpreted, threaded, and dynamic"
+
+Versions
+Main article: Java version history
+
+Major release versions of Java, along with their release dates:
+
+    JDK 1.0 (January 23, 1996)
+    JDK 1.1 (February 19, 1997)
+    J2SE 1.2 (December 8, 1998)
+    J2SE 1.3 (May 8, 2000)
+    J2SE 1.4 (February 6, 2002)
+    J2SE 5.0 (September 30, 2004)
+    Java SE 6 (December 11, 2006)
+    Java SE 7 (July 28, 2011)
+
+Practices
+Java platform
+Main articles: Java (software platform) and Java Virtual Machine
+
+One characteristic of Java is portability, which means that computer programs written in the Java language must run similarly on any hardware/operating-system platform. This is achieved by compiling the Java language code to an intermediate representation called Java bytecode, instead of directly to platform-specific machine code. Java bytecode instructions are analogous to machine code, but are intended to be interpreted by a virtual machine (VM) written specifically for the host hardware. End-users commonly use a Java Runtime Environment (JRE) installed on their own machine for standalone Java applications, or in a Web browser for Java applets.
+
+Standardized libraries provide a generic way to access host-specific features such as graphics, threading, and networking.
+
+A major benefit of using bytecode is porting. However, the overhead of interpretation means that interpreted programs almost always run more slowly than programs compiled to native executables would. Just-in-Time (JIT) compilers were introduced from an early stage that compile bytecodes to machine code during runtime.
+Implementations
+Gnome globe current event.svg
+	This section is outdated. Please update this section to reflect recent events or newly available information. Please see the talk page for more information. (September 2011)
+
+Sun Microsystems officially licensed the Java Standard Edition platform for Linux,[23] Mac OS X,[24] and Solaris. In the past Sun licensed Java to Microsoft but the license expired without renewal.[25] Because Windows does not ship with a Java software platform, a network of third-party vendors and licensees[26] develop them for Windows and other operating system/hardware platforms.
+
+Sun's trademark license for usage of the Java brand insists that all implementations be "compatible". This resulted in a legal dispute with Microsoft after Sun claimed that the Microsoft implementation did not support RMI or JNI and had added platform-specific features of their own. Sun sued in 1997, and in 2001 won a settlement of US$20 million, as well as a court order enforcing the terms of the license from Sun.[27] As a result, Microsoft no longer ships Java with Windows, and in recent versions of Windows, Internet Explorer cannot support Java applets without a third-party plugin. Sun, and others, have made available free Java run-time systems for those and other versions of Windows.
+
+Platform-independent Java is essential to the Java EE strategy, and an even more rigorous validation is required to certify an implementation. This environment enables portable server-side applications, such as Web services, Java Servlets, and Enterprise JavaBeans, as well as with embedded systems based on OSGi, using Embedded Java environments. Through the GlassFish project, Sun is working to create a fully functional, unified open source implementation of the Java EE technologies.
+	Wikiversity has learning materials about Java Platform, Enterprise Edition/Java EE Tutorial
+
+Sun also distributes a superset of the JRE called the Java Development Kit (commonly known as the JDK), which includes development tools such as the Java compiler, Javadoc, Jar, and debugger.
+Performance
+Main article: Java performance
+
+Programs written in Java have a reputation for being slower and requiring more memory than those written in C.[28] However, Java programs' execution speed improved significantly with the introduction of Just-in-time compilation in 1997/1998 for Java 1.1,[29] the addition of language features supporting better code analysis (such as inner classes, StringBuffer class, optional assertions, etc.), and optimizations in the Java Virtual Machine itself, such as HotSpot becoming the default for Sun's JVM in 2000. Currently (February 2012), microbenchmarks show Java 7 is approximately 1.5 times slower than C.[30]
+
+Some platforms offer direct hardware support for Java; there are microcontrollers that can run Java in hardware instead of a software Java Virtual Machine, and ARM based processors can have hardware support for executing Java bytecode through its Jazelle option.
+Automatic memory management
+
+Java uses an automatic garbage collector to manage memory in the object lifecycle. The programmer determines when objects are created, and the Java runtime is responsible for recovering the memory once objects are no longer in use. Once no references to an object remain, the unreachable memory becomes eligible to be freed automatically by the garbage collector. Something similar to a memory leak may still occur if a programmer's code holds a reference to an object that is no longer needed, typically when objects that are no longer needed are stored in containers that are still in use. If methods for a nonexistent object are called, a "null pointer exception" is thrown.[31][32]
+
+One of the ideas behind Java's automatic memory management model is that programmers can be spared the burden of having to perform manual memory management. In some languages, memory for the creation of objects is implicitly allocated on the stack, or explicitly allocated and deallocated from the heap. In the latter case the responsibility of managing memory resides with the programmer. If the program does not deallocate an object, a memory leak occurs. If the program attempts to access or deallocate memory that has already been deallocated, the result is undefined and difficult to predict, and the program is likely to become unstable and/or crash. This can be partially remedied by the use of smart pointers, but these add overhead and complexity. Note that garbage collection does not prevent "logical" memory leaks, i.e. those where the memory is still referenced but never used.
+
+Garbage collection may happen at any time. Ideally, it will occur when a program is idle. It is guaranteed to be triggered if there is insufficient free memory on the heap to allocate a new object; this can cause a program to stall momentarily. Explicit memory management is not possible in Java.
+
+Java does not support C/C++ style pointer arithmetic, where object addresses and unsigned integers (usually long integers) can be used interchangeably. This allows the garbage collector to relocate referenced objects and ensures type safety and security.
+
+As in C++ and some other object-oriented languages, variables of Java's primitive data types are not objects. Values of primitive types are either stored directly in fields (for objects) or on the stack (for methods) rather than on the heap, as commonly true for objects (but see Escape analysis). This was a conscious decision by Java's designers for performance reasons. Because of this, Java was not considered to be a pure object-oriented programming language. However, as of Java 5.0, autoboxing enables programmers to proceed as if primitive types were instances of their wrapper class.
+
+Java contains multiple types of garbage collectors. By default, HotSpot uses the Concurrent Mark Sweep collector, also known as the CMS Garbage Collector. However, there are also several other garbage collectors that can be used to manage the Heap. For 90% of applications in Java, the CMS Garbage Collector is good enough.[33]
+Syntax
+Main article: Java syntax
+
+The syntax of Java is largely derived from C++. Unlike C++, which combines the syntax for structured, generic, and object-oriented programming, Java was built almost exclusively as an object-oriented language. All code is written inside a class, and everything is an object, with the exception of the primitive data types (integers, floating-point numbers, boolean values, and characters), which are not classes for performance reasons.
+
+Unlike C++, Java does not support operator overloading or multiple inheritance for classes. This simplifies the language and aids in preventing potential errors and anti-pattern design.
+
+Java uses similar commenting methods to C++. There are three different styles of comments: a single line style marked with two slashes (//), a multiple line style opened with /* and closed with */, and the Javadoc commenting style opened with /** and closed with */. The Javadoc style of commenting allows the user to run the Javadoc executable to compile documentation for the program.
+
+Example:
+
+// This is an example of a single line comment using two slashes
+ 
+/* This is an example of a multiple line comment using the slash and asterisk.
+   This type of comment can be used to hold a lot of information or deactivate
+   code but it is very important to remember to close the comment. */
+ 
+/**
+ * This is an example of a Javadoc comment; Javadoc can compile documentation
+ *  from this text.
+ */
+
+Examples
+	This article contains instructions, advice, or how-to content. The purpose of Wikipedia is to present facts, not to train. Please help improve this article either by rewriting the how-to content or by moving it to Wikiversity or Wikibooks. (January 2012)
+Hello world
+
+The traditional Hello world program can be written in Java as:[34]
+
+class HelloWorldApp {
+    public static void main(String[] args) {
+        System.out.println("Hello World!"); // Display the string.
+    }
+}
+
+To compare this to other programming languages see the list of hello world program examples.
+
+Source files must be named after the public class they contain, appending the suffix .java, for example, HelloWorldApp.java. It must first be compiled into bytecode, using a Java compiler, producing a file named HelloWorldApp.class. Only then can it be executed, or 'launched'. The Java source file may only contain one public class but can contain multiple classes with less than public access and any number of public inner classes.
+
+A class that is not declared public may be stored in any .java file. The compiler will generate a class file for each class defined in the source file. The name of the class file is the name of the class, with .class appended. For class file generation, anonymous classes are treated as if their name were the concatenation of the name of their enclosing class, a $, and an integer.
+
+The keyword public denotes that a method can be called from code in other classes, or that a class may be used by classes outside the class hierarchy. The class hierarchy is related to the name of the directory in which the .java file is located.
+
+The keyword static in front of a method indicates a static method, which is associated only with the class and not with any specific instance of that class. Only static methods can be invoked without a reference to an object. Static methods cannot access any class members that are not also static.
+
+The keyword void indicates that the main method does not return any value to the caller. If a Java program is to exit with an error code, it must call System.exit() explicitly.
+
+The method name "main" is not a keyword in the Java language. It is simply the name of the method the Java launcher calls to pass control to the program. Java classes that run in managed environments such as applets and Enterprise JavaBean do not use or need a main() method. A Java program may contain multiple classes that have main methods, which means that the VM needs to be explicitly told which class to launch from.
+
+The main method must accept an array of String objects. By convention, it is referenced as args although any other legal identifier name can be used. Since Java 5, the main method can also use variable arguments, in the form of public static void main(String... args), allowing the main method to be invoked with an arbitrary number of String arguments. The effect of this alternate declaration is semantically identical (the args parameter is still an array of String objects), but allows an alternative syntax for creating and passing the array.
+
+The Java launcher launches Java by loading a given class (specified on the command line or as an attribute in a JAR) and starting its public static void main(String[]) method. Stand-alone programs must declare this method explicitly. The String[] args parameter is an array of String objects containing any arguments passed to the class. The parameters to main are often passed by means of a command line.
+
+Printing is part of a Java standard library: The System class defines a public static field called out. The out object is an instance of the PrintStream class and provides many methods for printing data to standard out, including println(String) which also appends a new line to the passed string.
+
+The string "Hello, world!" is automatically converted to a String object by the compiler.
+A more comprehensive example
+
+// OddEven.java
+import javax.swing.JOptionPane;
+ 
+public class OddEven {
+    /**
+     * "input" is the number that the user gives to the computer
+     */
+    private int input; // a whole number("int" means integer)
+ 
+    /**
+     * This is the constructor method. It gets called when an object of the OddEven type
+     * is being created.
+     */
+    public OddEven() {
+    /*
+     * In most Java programs constructors can initialize objects with default values, or create
+     * other objects that this object might use to perform its functions. In some Java programs, the
+     * constructor may simply be an empty function if nothing needs to be initialized prior to the
+     * functioning of the object.  In this program's case, an empty constructor would suffice, even if
+     * it is empty. A constructor must exist, however if the user doesn't put one in then the compiler
+     * will create an empty one.
+     */
+    }
+ 
+    /**
+     * This is the main method. It gets called when this class is run through a Java interpreter.
+     * @param args command line arguments (unused)
+     */
+    public static void main(final String[] args) {
+        /*
+         * This line of code creates a new instance of this class called "number" (also known as an
+         * Object) and initializes it by calling the constructor.  The next line of code calls
+         * the "showDialog()" method, which brings up a prompt to ask you for a number
+         */
+        OddEven number = new OddEven();
+        number.showDialog();
+    }
+ 
+    public void showDialog() {
+        /*
+         * "try" makes sure nothing goes wrong. If something does,
+         * the interpreter skips to "catch" to see what it should do.
+         */
+        try {
+            /*
+             * The code below brings up a JOptionPane, which is a dialog box
+             * The String returned by the "showInputDialog()" method is converted into
+             * an integer, making the program treat it as a number instead of a word.
+             * After that, this method calls a second method, calculate() that will
+             * display either "Even" or "Odd."
+             */
+            this.input = Integer.parseInt(JOptionPane.showInputDialog("Please Enter A Number"));
+            this.calculate();
+        } catch (final NumberFormatException e) {
+            /*
+             * Getting in the catch block means that there was a problem with the format of
+             * the number. Probably some letters were typed in instead of a number.
+             */
+            System.err.println("ERROR: Invalid input. Please type in a numerical value.");
+        }
+    }
+ 
+    /**
+     * When this gets called, it sends a message to the interpreter.
+     * The interpreter usually shows it on the command prompt (For Windows users)
+     * or the terminal (For *nix users).(Assuming it's open)
+     */
+    private void calculate() {
+        if ((this.input % 2) == 0) {
+            JOptionPane.showMessageDialog(null, "Even");
+        } else {
+            JOptionPane.showMessageDialog(null, "Odd");
+        }
+    }
+}
+
+    The import statement imports the JOptionPane class from the javax.swing package.
+    The OddEven class declares a single private field of type int named input. Every instance of the OddEven class has its own copy of the input field. The private declaration means that no other class can access (read or write) the input field.
+    OddEven() is a public constructor. Constructors have the same name as the enclosing class they are declared in, and unlike a method, have no return type. A constructor is used to initialize an object that is a newly created instance of the class.
+    The calculate() method is declared without the static keyword. This means that the method is invoked using a specific instance of the OddEven class. (The reference used to invoke the method is passed as an undeclared parameter of type OddEven named this.) The method tests the expression input % 2 == 0 using the if keyword to see if the remainder of dividing the input field belonging to the instance of the class by two is zero. If this expression is true, then it prints Even; if this expression is false it prints Odd. (The input field can be equivalently accessed as this.input, which explicitly uses the undeclared this parameter.)
+    OddEven number = new OddEven(); declares a local object reference variable in the main method named number. This variable can hold a reference to an object of type OddEven. The declaration initializes number by first creating an instance of the OddEven class, using the new keyword and the OddEven() constructor, and then assigning this instance to the variable.
+    The statement number.showDialog(); calls the calculate method. The instance of OddEven object referenced by the number local variable is used to invoke the method and passed as the undeclared this parameter to the calculate method.
+    input = Integer.parseInt(JOptionPane.showInputDialog("Please Enter A Number")); is a statement that converts the type of String to the primitive data type int by using a utility function in the primitive wrapper class Integer.

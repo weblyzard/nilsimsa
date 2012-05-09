@@ -1,0 +1,172 @@
+Python (programming language)
+From Wikipedia, the free encyclopedia
+Jump to: navigation, search
+Python Official Python logo
+Paradigm(s) 	multi-paradigm: object-oriented, imperative, functional, procedural, reflective
+Appeared in 	1991
+Designed by 	Guido van Rossum
+Developer 	Python Software Foundation
+Stable release 	3.2.3 /
+11 April 2012; 28 days ago
+2.7.3 /
+11 April 2012; 28 days ago
+Preview release 	3.3.0a3 /
+1 May 2012; 8 days ago[1]
+Typing discipline 	duck, dynamic, strong
+Major implementations 	CPython, IronPython, Jython, Python for S60, PyPy
+Dialects 	Cython, RPython, Stackless Python
+Influenced by 	ABC,[2] ALGOL 68,[3] C,[4] C++,[5] Dylan,[6] Haskell,[7] Icon,[8] Java,[9] Lisp,[citation needed] Modula-3,[5] Perl
+Influenced 	Boo, Cobra, D, Falcon, Groovy, JavaScript, Ruby[10]
+OS 	Cross-platform
+License 	Python Software Foundation License
+Usual filename extensions 	.py, .pyw, .pyc, .pyo, .pyd
+Website 	python.org
+Wikibooks logo Python Programming at Wikibooks
+
+Python is a general-purpose, high-level programming language[11] whose design philosophy emphasizes code readability.[12] Python claims to combine "remarkable power with very clear syntax",[13] and its standard library is large and comprehensive.[14]
+
+Python supports multiple programming paradigms, primarily but not limited to object-oriented, imperative and, to a lesser extent, functional programming styles. It features a fully dynamic type system and automatic memory management, similar to that of Scheme, Ruby, Perl, and Tcl. Like other dynamic languages, Python is often used as a scripting language, but is also used in a wide range of non-scripting contexts. Using third-party tools, Python code can be packaged into standalone executable programs. Python interpreters are available for many operating systems.
+
+The reference implementation of Python (CPython) is free and open source software and has a community-based development model, as do nearly all of its alternative implementations. CPython is managed by the non-profit Python Software Foundation.
+Contents
+
+    1 History
+    2 Programming philosophy
+    3 Name and neologisms
+    4 Usage
+    5 Syntax and semantics
+        5.1 Indentation
+        5.2 Statements and control flow
+        5.3 Expressions
+        5.4 Methods
+        5.5 Typing
+        5.6 Mathematics
+    6 Implementations
+        6.1 CPython
+        6.2 Alternative implementations
+        6.3 Interpretational semantics
+    7 Development
+    8 Standard library
+    9 Influence on other languages
+    10 See also
+    11 References
+    12 Further reading
+    13 External links
+
+History
+Main article: History of Python
+Guido van Rossum, the creator of Python
+
+Python was conceived in the late 1980s[15] and its implementation was started in December 1989[16] by Guido van Rossum at CWI in the Netherlands as a successor to the ABC language (itself inspired by SETL)[17] capable of exception handling and interfacing with the Amoeba operating system.[2] Van Rossum is Python's principal author, and his continuing central role in deciding the direction of Python is reflected in the title given to him by the Python community, Benevolent Dictator for Life (BDFL).
+
+Python 2.0 was released on 16 October 2000, with many major new features including a full garbage collector and support for Unicode. However, the most important change was to the development process itself, with a shift to a more transparent and community-backed process.[18] Python 3.0 (also called Python 3000 or py3k), a major, backwards-incompatible release, was released on 3 December 2008[19] after a long period of testing. Many of its major features have been backported to the backwards-compatible Python 2.6 and 2.7.[20] Python has been awarded a TIOBE Programming Language of the Year award twice (2007, 2010), which is given to the language with the greatest growth in popularity over the course of a year, as measured by the TIOBE index.[21]
+Programming philosophy
+
+Python is a multi-paradigm programming language. Rather than forcing programmers to adopt a particular style of programming, it permits several styles: object-oriented programming and structured programming are fully supported, and there are a number of language features which support functional programming and aspect-oriented programming (including by metaprogramming[22] and by magic methods).[23] Many other paradigms are supported using extensions, such as pyDBC[24] and Contracts for Python[25] which allow design by contract.
+
+Python uses dynamic typing and a combination of reference counting and a cycle-detecting garbage collector for memory management. An important feature of Python is dynamic name resolution (late binding), which binds method and variable names during program execution.
+
+Rather than requiring all desired functionality to be built into the language's core, Python was designed to be highly extensible. New built-in modules can be easily written in C, C++ or Cython. Python can also be used as an extension language for existing modules and applications that need a programmable interface. This design of a small core language with a large standard library and an easily extensible interpreter was intended by Van Rossum from the very start because of his frustrations with ABC (which espoused the opposite mindset).[15]
+
+The design of Python offers only limited support for functional programming in the Lisp tradition. However, Python's design philosophy exhibits significant similarities to those of minimalistic Lisp-family languages, such as Scheme.[citation needed] The language has map(), reduce() and filter() functions, and the list comprehensions added in Python 2.0 have since been extended with comprehensions for dictionaries and sets, as well as generator expressions. The standard library has two modules (itertools and functools) that implement functional tools borrowed from Haskell and Standard ML.[26]
+
+While offering choice in coding methodology, the Python philosophy rejects exuberant syntax, such as in Perl, in favor of a sparser, less-cluttered grammar. Python's developers expressly promote a particular "culture" or ideology based on what they want the language to be, favoring language forms they see as "beautiful", "explicit" and "simple". As Alex Martelli put it in his Python Cookbook (2nd ed., p. 230): "To describe something as clever is NOT considered a compliment in the Python culture." Python's philosophy rejects the Perl "there is more than one way to do it" approach to language design in favor of "there should be one—and preferably only one—obvious way to do it".[27]
+
+Python's developers eschew premature optimization, and moreover, reject patches to non-critical parts of CPython which would offer a marginal increase in speed at the cost of clarity.[28] When speed is important, Python programmers tend to try using a JIT compiler such as Psyco or using an alternative language implementation such as PyPy. When pure Python code is not fast enough, time-critical functions can be rewritten in "closer to the metal" languages such as C, or by translating (a dialect of) Python code to C code using tools like Cython.[29]
+
+The core philosophy of the language is summarized by the document "PEP 20 (The Zen of Python)".[27]
+Name and neologisms
+
+An important goal of the Python developers is making Python fun to use. This is reflected in the origin of the name (derived from the television series Monty Python's Flying Circus), in the common practice of using Monty Python references in example code, and in an occasionally playful approach to tutorials and reference materials.[30][31] For example, the metasyntactic variables often used in Python literature are spam and eggs,[30][32] instead of the traditional foo and bar.
+
+A common neologism in the Python community is pythonic, which can have a wide range of meanings related to program style. To say that code is pythonic is to say that it uses Python idioms well, that it is natural or shows fluency in the language. Likewise, to say of an interface or language feature that it is pythonic is to say that it works well with Python idioms, that its use meshes well with the rest of the language.
+
+In contrast, a mark of unpythonic code is that it attempts to write C++ (or Lisp, Perl, or Java) code in Python—that is, provides a rough transcription rather than an idiomatic translation of forms from another language. The concept of pythonicity is tightly bound to Python's minimalist philosophy of readability and avoiding the "there's more than one way to do it" approach. Unreadable code or incomprehensible idioms are unpythonic.
+
+Users and admirers of Python—most especially those considered knowledgeable or experienced—are often referred to as Pythonists, Pythonistas, and Pythoneers.[33]
+
+The prefix Py can be used to show that something is related to Python. Examples of the use of this prefix in names of Python applications or libraries include Pygame, a binding of SDL to Python (commonly used to create games); PyS60, an implementation for the Symbian S60 operating system; PyQt and PyGTK, which bind Qt and GTK, respectively, to Python; and PyPy, a Python implementation written in Python. The prefix is also used outside of naming software packages: the major Python conference is named PyCon.
+Usage
+Main article: List of Python software
+
+Python is often used as a scripting language for web applications, e.g. via mod_wsgi for the Apache web server. With Web Server Gateway Interface, a standard API has been developed to facilitate these applications. Web application frameworks like Django, Pylons, TurboGears, web2py, Tornado, Flask and Zope support developers in the design and maintenance of complex applications. Libraries like NumPy, SciPy and Matplotlib allow Python to be used effectively in scientific computing.
+
+Python has been successfully embedded in a number of software products as a scripting language, including in finite element method software such as Abaqus, 3D animation packages such as Blender, Cinema 4D, Lightwave, Houdini, Maya, modo, MotionBuilder, Softimage, the visual effects compositor Nuke, and 2D imaging programs like GIMP, Inkscape, Scribus and Paint Shop Pro.[34] GNU GDB uses Python as a pretty printer to show complex structures such as C++ containers. ESRI is now promoting Python as the best choice for writing scripts in ArcGIS.[35] It has even been used in several video games,[36][37] and has been adopted as first of the three available programming languages in Google App Engine, the other two being Java and Go.[38]
+
+Thanks to being a scripting language with module architecture, syntax simplicity and rich text processing tools, Python is often used for Natural language processing tasks.[citation needed] Python has also been used in Artificial Intelligence tasks.[39][40][41]
+
+For many operating systems, Python is a standard component; it ships with most Linux distributions, FreeBSD, NetBSD, OpenBSD and with OS X and can be used from the terminal. A number of Linux distributions use installers written in Python: Ubuntu uses the Ubiquity installer, while Red Hat Linux and Fedora use the Anaconda installer. Gentoo Linux uses Python in its package management system, Portage and the standard tool to access it, emerge. Pardus uses it for administration and during system boot.[42]
+
+Python has also seen extensive use in the information security industry, including exploit development.[43][44]
+
+Among the users of Python are YouTube[45] and the original BitTorrent client.[46] Large organizations that make use of Python include Google,[45] Yahoo!,[47] CERN,[48] NASA,[49] ILM,[50] and ITA.[51] Most of the Sugar software for the One Laptop per Child XO, now developed at Sugar Labs, is written in Python.[52]
+
+In addition to standard desktop Python IDEs, there are also browser-based IDEs, such as NCLab and Sage, intended for developing science and math-related Python programs.
+
+As of April 2012, Python ranks at position 8 in the TIOBE Programming Community Index.[53]
+Syntax and semantics
+Syntax-highlighted Python 2.x code.
+Main article: Python syntax and semantics
+
+Python is intended to be a highly readable language. It is designed to have an uncluttered visual layout, frequently using English keywords where other languages use punctuation. Python requires less boilerplate than traditional manifestly typed structured languages such as C or Pascal, and has a smaller number of syntactic exceptions and special cases than either of these.[54] For a detailed description of the differences between 2.x and 3.x versions, see History of Python.
+
+The simplicity of Python is demonstrated by its version of the classic "Hello world" program:
+
+print("Hello world")
+
+Indentation
+
+Python uses whitespace indentation, rather than curly braces or keywords, to delimit blocks; a feature also termed the off-side rule. An increase in indentation comes after certain statements; a decrease in indentation signifies the end of the current block.[55]
+Statements and control flow
+
+Python's statements include (among others):
+
+    The if statement, which conditionally executes a block of code, along with else and elif (a contraction of else-if).
+    The for statement, which iterates over an iterable object, capturing each element to a local variable for use by the attached block.
+    The while statement, which executes a block of code as long as its condition is true.
+    The try statement, which allows exceptions raised in its attached code block to be caught and handled by except clauses; it also ensures that clean-up code in a finally block will always be run regardless of how the block exits.
+    The class statement, which executes a block of code and attaches its local namespace to a class, for use in object-oriented programming.
+    The def statement, which defines a function or method.
+    The with statement (from Python 2.5), which encloses a code block within a context manager (for example, acquiring a lock before the block of code is run, and releasing the lock afterwards).
+    The pass statement, which serves as a NOP and can be used in place of a code block.
+    The assert statement, used during debugging to check for conditions that ought to apply.
+    The yield statement, which returns a value from a generator function. (From Python 2.5, yield is also an operator. This form is used to implement coroutines – see below.)
+
+Each statement has its own semantics: for example, the def statement does not execute its block immediately, unlike most other statements.
+
+Python does not support first-class continuations, and according to Guido van Rossum it never will.[56] However, better support for coroutine-like functionality is provided in 2.5, by extending Python's generators.[57] Prior to 2.5, generators were lazy iterators; information was passed unidirectionally out of the generator. As of Python 2.5, it is possible to pass information back into a generator function.
+Expressions
+
+Python expressions are similar to languages such as C and Java.
+
+    In Python 2, the / operator on integers does integer division: it truncates the result to an integer. Floating-point division on integers can be achieved by converting one of the integers to a float (e.g. float(x) / y). In Python 3, the result of / is always a floating-point value. This behaviour can be enabled in Python 2.2+ using from __future__ import division. In both Python 2.2+ and Python 3, // can be used to do integer division.
+    In Python, == compares by value, in contrast to Java, where it compares by reference. (Value comparisons in Java use the equals() method.) Python's is operator may be used to compare object identities (comparison by reference). Comparisons may be chained, for example a <= b <= c.
+    Python uses the words and, or, not for its boolean operators rather than the symbolic &&, ||, ! used in C.
+    Python has a type of expression termed a list comprehension. Python 2.4 extended list comprehensions into a more general expression termed a generator expression.[58]
+    Anonymous functions are implemented using lambda expressions; however, these are limited in that the body can only be a single expression.
+    Conditional expressions in Python are written as x if c else y[59] (different in order of operands from the ?: operator common to many other languages).
+    Python makes a distinction between lists and tuples. Lists are written as [1, 2, 3], are mutable, and cannot be used as the keys of dictionaries (dictionary keys must be immutable in Python). Tuples are written as (1, 2, 3), are immutable and thus can be used as the keys of dictionaries, provided all elements of the tuple are immutable. The parentheses around the tuple are optional in some contexts. Tuples can appear on the left side of an equal sign; hence a statement like x, y = y, x can be used to swap two variables.
+    Python 2 has a "string format" operator %. This functions analogous to printf format strings in C, e.g. "foo=%s bar=%d" % ("blah", 2) evaluates to "foo=blah bar=2". In Python 3, this was supplemented by the format() method of the str class, e.g. "foo={0} bar={1}".format("blah", 2).
+    Python has various kinds of string literals:
+        Strings delimited by single or double quotation marks. Unlike in Unix shells, Perl and Perl-influenced languages, single quotation marks and double quotation marks function similarly. Both kinds of string use the backslash (\) as an escape character and there is no implicit string interpolation such as "$foo".
+        Triple-quoted strings, which begin and end with a series of three single or double quotation marks. They may span multiple lines and function like here documents in shells, Perl and Ruby.
+        Raw string varieties, denoted by prefixing the string literal with an r. No escape sequences are interpreted; hence raw strings are useful where literal backslashes are common, such as regular expressions and Windows-style paths. Compare "@-quoting" in C#.
+    Python has index and slice expressions on lists, denoted as a[key], a[start:stop] or a[start:stop:step]. Indexes are zero-based, and negative indexes are relative to the end. Slices take elements from the start index up to, but not including, the stop index. The third slice parameter, called step or stride, allows elements to be skipped and reversed. Slice indexes may be omitted, for example a[:] returns a copy of the entire list. Each element of a slice is a shallow copy.
+
+In Python, a distinction between expressions and statements is rigidly enforced, in contrast to languages such as Common Lisp, Scheme, or Ruby. This leads to some duplication of functionality, e.g.
+
+    list comprehensions vs. for-loops
+    conditional expressions vs. if blocks
+    The eval() vs. exec() built-in functions (in Python 2, exec is a statement); the former is for expressions, the latter is for statements.
+
+Statements cannot be a part of an expression and so list and other comprehensions or lambda expressions, all being expressions, cannot contain statements. A particular case of this is that an assignment statement such as a = 1 cannot form part of the conditional expression of a conditional statement. This has the advantage of avoiding a classic C error of mistaking an assignment operator = for an equality operator == in conditions: if (c = 1) { ... } is valid C code but if c = 1: ... causes a syntax error in Python.
+Methods
+
+Methods on objects are functions attached to the object's class; the syntax instance.method(argument) is, for normal methods and functions, syntactic sugar for Class.method(instance, argument). Python methods have an explicit self parameter to access instance data, in contrast to the implicit self in some other object-oriented programming languages (for example, Java, C++ or Ruby).[60]
+Typing
+
+Python uses duck typing and has typed objects but untyped variable names. Type constraints are not checked at compile time; rather, operations on an object may fail, signifying that the given object is not of a suitable type. Despite being dynamically typed, Python is strongly typed, forbidding operations that are not well-defined (for example, adding a number to a string) rather than silently attempting to make sense of them.
+
+Python allows programmers to define their own types using classes, which are most often used for object-oriented programming. New instances of classes are constructed by calling the class (for example, SpamClass() or EggsClass()), and the classes themselves are instances of the metaclass type (itself an instance of itself), allowing metaprogramming and reflection.
+
+Prior to version 3.0, Python had two kinds of classes: "old-style" and "new-style".[61] Old-style classes were eliminated in Python 3.0, making all classes new-style. In versions between 2.2 and 3.0, both kinds of classes could be used. The syntax of both styles is the same, the difference being whether the class object is inherited from, directly or indirectly (all new-style classes inherit from object and are instances of type).

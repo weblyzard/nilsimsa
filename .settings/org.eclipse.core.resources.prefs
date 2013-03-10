@@ -1,2 +1,6 @@
 eclipse.preferences.version=1
-encoding//src/com/weblyzard/lib/string/nilsimsa/test/wiki-md5.txt=UTF-8
+encoding//src/main/java=UTF-8
+encoding//src/test/java=UTF-8
+encoding//src/test/resources=UTF-8
+encoding//src/test/resources/wiki-md5.txt=UTF-8
+encoding/<project>=UTF-8

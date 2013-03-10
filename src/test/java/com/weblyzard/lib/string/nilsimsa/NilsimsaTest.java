@@ -36,13 +36,12 @@ public class NilsimsaTest {
 	}
 	
 	@Test
-	public void test() {	
+	public void hashTest() {	
 		for (Map.Entry<String, String>testSet: testDocuments.entrySet()) {
 			Nilsimsa n = new Nilsimsa();
 			n.update( testSet.getValue() );
 			System.out.println(n.hexdigest()+" "+testSet.getKey());
-			assertEquals( testSet.getKey(), n.hexdigest( testSet.getValue()) );
-			
+			assertEquals( testSet.getKey(), n.hexdigest( testSet.getValue()) );	
 		}
 	}
 	
@@ -58,12 +57,11 @@ public class NilsimsaTest {
  		for (String testData: TEST_DATA) {
  			testSet = testData.split(" ");
  			try {
- 				URL resource = NilsimsaTest.class.getResource("test/wiki-"+ testSet[1] + ".txt");
+ 				URL resource = NilsimsaTest.class.getClassLoader().getResource("wiki-"+ testSet[1] + ".txt");
 				documentContent = FileUtils.readFileToString(
 						new File( resource.getFile()), CONTENT_ENCODING);
 				result.put( testSet[0], documentContent);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 				fail("Cannot read corpus.");
 			}

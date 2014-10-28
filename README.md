@@ -1,6 +1,6 @@
 ## Nilsimsa for Java
 
-This library provides functions to compute and compare the Nilsimsa string similaritystring similarity  hash for a given string.
+Nilsimsa is a hashing function which belongs to the family of locality sensitive hashes (LSH). This library provides functions to compute and compare the Nilsimsa string similarity hash for a given string.
  
 The code is a port of the Python Nilsimsa implementation by Michael Itz to the Java language:
   http://code.google.com/p/py-nilsimsa.

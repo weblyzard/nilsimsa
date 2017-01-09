@@ -10,14 +10,14 @@ Series 	(SHA-0), SHA-1, SHA-2, SHA-3
 Certification 	FIPS
 Detail
 Digest sizes 	160 bits
-Structure 	Merkle–Damgård construction
+Structure 	MerkleâDamgÃ¥rd construction
 Rounds 	80
 Best public cryptanalysis
-A 2008 attack by Stéphane Manuel breaks the hash function, as it can produce hash collisions with a complexity of 251 operations.[1]
+A 2008 attack by StÃ©phane Manuel breaks the hash function, as it can produce hash collisions with a complexity of 251 operations.[1]
 
 In cryptography, SHA-1 is a cryptographic hash function designed by the United States National Security Agency and published by the United States NIST as a U.S. Federal Information Processing Standard. SHA stands for "secure hash algorithm". The three SHA algorithms are structured differently and are distinguished as SHA-0, SHA-1, and SHA-2. SHA-1 is very similar to SHA-0, but corrects an error in the original SHA hash specification that led to significant weaknesses. The SHA-0 algorithm was not adopted by many applications. SHA-2 on the other hand significantly differs from the SHA-1 hash function.
 
-SHA-1 is the most widely used of the existing SHA hash functions, and is employed in several widely used applications and protocols. In 2005, security flaws were identified in SHA-1, namely that a mathematical weakness might exist, indicating that a stronger hash function would be desirable.[2] Although no successful attacks have yet been reported on the SHA-2 variants, they are algorithmically similar to SHA-1 and so efforts are underway to develop improved alternatives.[3][4] A new hash standard, SHA-3, is currently under development — an ongoing NIST hash function competition is scheduled to end with the selection of a winning function in 2012.
+SHA-1 is the most widely used of the existing SHA hash functions, and is employed in several widely used applications and protocols. In 2005, security flaws were identified in SHA-1, namely that a mathematical weakness might exist, indicating that a stronger hash function would be desirable.[2] Although no successful attacks have yet been reported on the SHA-2 variants, they are algorithmically similar to SHA-1 and so efforts are underway to develop improved alternatives.[3][4] A new hash standard, SHA-3, is currently under development â an ongoing NIST hash function competition is scheduled to end with the selection of a winning function in 2012.
 Contents
 
     1 The SHA-1 hash function
@@ -52,13 +52,13 @@ Addition denotes addition modulo 232.
 
 SHA-1 produces a 160-bit message digest based on principles similar to those used by Ronald L. Rivest of MIT in the design of the MD4 and MD5 message digest algorithms, but has a more conservative design.
 
-The original specification of the algorithm was published in 1993 as the Secure Hash Standard, FIPS PUB 180, by US government standards agency NIST (National Institute of Standards and Technology). This version is now often referred to as SHA-0. It was withdrawn by NSA shortly after publication and was superseded by the revised version, published in 1995 in FIPS PUB 180-1 and commonly referred to as SHA-1. SHA-1 differs from SHA-0 only by a single bitwise rotation in the message schedule of its compression function; this was done, according to NSA, to correct a flaw in the original algorithm which reduced its cryptographic security. However, NSA did not provide any further explanation or identify the flaw that was corrected. Weaknesses have subsequently been reported in both SHA-0 and SHA-1. SHA-1 appears to provide greater resistance to attacks, supporting the NSA’s assertion that the change increased the security.
+The original specification of the algorithm was published in 1993 as the Secure Hash Standard, FIPS PUB 180, by US government standards agency NIST (National Institute of Standards and Technology). This version is now often referred to as SHA-0. It was withdrawn by NSA shortly after publication and was superseded by the revised version, published in 1995 in FIPS PUB 180-1 and commonly referred to as SHA-1. SHA-1 differs from SHA-0 only by a single bitwise rotation in the message schedule of its compression function; this was done, according to NSA, to correct a flaw in the original algorithm which reduced its cryptographic security. However, NSA did not provide any further explanation or identify the flaw that was corrected. Weaknesses have subsequently been reported in both SHA-0 and SHA-1. SHA-1 appears to provide greater resistance to attacks, supporting the NSAâs assertion that the change increased the security.
 
 
 Comparison of SHA functions
 
-In the table below, internal state means the “internal hash sum” after each compression of a data block.
-Further information: Merkle–Damgård construction
+In the table below, internal state means the âinternal hash sumâ after each compression of a data block.
+Further information: MerkleâDamgÃ¥rd construction
 Algorithm and variant 	Output size
 (bits) 	Internal state
 size (bits) 	Block size
@@ -66,10 +66,10 @@ size (bits) 	Block size
 size (bits) 	Word size
 (bits) 	Rounds 	Operations 	Collisions
 found?
-SHA-0 	160 	160 	512 	264 − 1 	32 	80 	add, and, or, xor, rotate, mod 	Yes
+SHA-0 	160 	160 	512 	264 â 1 	32 	80 	add, and, or, xor, rotate, mod 	Yes
 SHA-1 	Theoretical attack (251)[5]
-SHA-2 	SHA-256/224 	256/224 	256 	512 	264 − 1 	32 	64 	add, and, or, xor, shift, rotate, mod 	No
-SHA-512/384 	512/384 	512 	1024 	2128 − 1 	64 	80
+SHA-2 	SHA-256/224 	256/224 	256 	512 	264 â 1 	32 	64 	add, and, or, xor, shift, rotate, mod 	No
+SHA-512/384 	512/384 	512 	1024 	2128 â 1 	64 	80
 Applications
 Cryptography
 For more details on this topic, see Cryptographic hash function#Applications.
@@ -92,14 +92,14 @@ Cryptographers have produced collision pairs for SHA-0 and have found algorithms
 
 In terms of practical security, a major concern about these new attacks is that they might pave the way to more efficient ones. Whether this is the case is yet to be seen, but a migration to stronger hashes is believed to be prudent. Some of the applications that use cryptographic hashes, such as password storage, are only minimally affected by a collision attack. Constructing a password that works for a given account requires a preimage attack, as well as access to the hash of the original password, which may or may not be trivial. Reversing password encryption (e.g. to obtain a password to try against a user's account elsewhere) is not made possible by the attacks. (However, even a secure password hash can't prevent brute-force attacks on weak passwords.)
 
-In the case of document signing, an attacker could not simply fake a signature from an existing document—the attacker would have to produce a pair of documents, one innocuous and one damaging, and get the private key holder to sign the innocuous document. There are practical circumstances in which this is possible; until the end of 2008, it was possible to create forged SSL certificates using an MD5 collision.[9]
+In the case of document signing, an attacker could not simply fake a signature from an existing documentâthe attacker would have to produce a pair of documents, one innocuous and one damaging, and get the private key holder to sign the innocuous document. There are practical circumstances in which this is possible; until the end of 2008, it was possible to create forged SSL certificates using an MD5 collision.[9]
 
 Due to the block and iterative structure of the algorithms and the absence of additional final steps, all SHA functions are vulnerable to length-extension and partial-message collision attacks.[10] These attacks allow an attacker to forge a message, signed only by a keyed hash - SHA(message || key) or SHA(key || message ) - by extending the message and recalculating the hash without knowing the key. The simplest improvement to prevent these attacks is to hash twice - SHA_d(message) = SHA(SHA(0^b || message)) (0^b - zero block, length is equal to block size of hash function).
 SHA-0
 
 At CRYPTO 98, two French researchers, Florent Chabaud and Antoine Joux, presented an attack on SHA-0 (Chabaud and Joux, 1998): collisions can be found with complexity 261, fewer than the 280 for an ideal hash function of the same size.
 
-In 2004, Biham and Chen found near-collisions for SHA-0—two messages that hash to nearly the same value; in this case, 142 out of the 160 bits are equal. They also found full collisions of SHA-0 reduced to 62 out of its 80 rounds.
+In 2004, Biham and Chen found near-collisions for SHA-0âtwo messages that hash to nearly the same value; in this case, 142 out of the 160 bits are equal. They also found full collisions of SHA-0 reduced to 62 out of its 80 rounds.
 
 Subsequently, on 12 August 2004, a collision for the full SHA-0 algorithm was announced by Joux, Carribault, Lemuet, and Jalby. This was done by using a generalization of the Chabaud and Joux attack. Finding the collision had complexity 251 and took about 80,000 CPU hours on a supercomputer with 256 Itanium 2 processors. (Equivalent to 13 days of full-time use of the computer.)
 
@@ -110,7 +110,7 @@ SHA-1
 
 In light of the results for SHA-0, some experts suggested that plans for the use of SHA-1 in new cryptosystems should be reconsidered. After the CRYPTO 2004 results were published, NIST announced that they planned to phase out the use of SHA-1 by 2010 in favor of the SHA-2 variants.[15]
 
-In early 2005, Rijmen and Oswald published an attack on a reduced version of SHA-1—53 out of 80 rounds—which finds collisions with a computational effort of fewer than 280 operations.[16]
+In early 2005, Rijmen and Oswald published an attack on a reduced version of SHA-1â53 out of 80 roundsâwhich finds collisions with a computational effort of fewer than 280 operations.[16]
 
 In February 2005, an attack by Xiaoyun Wang, Yiqun Lisa Yin, and Hongbo Yu was announced.[13] The attacks can find collisions in the full version of SHA-1, requiring fewer than 269 operations. (A brute-force search would require 280 operations.)
 
@@ -120,11 +120,11 @@ In an interview, Yin states that, "Roughly, we exploit the following two weaknes
 
 On 17 August 2005, an improvement on the SHA-1 attack was announced on behalf of Xiaoyun Wang, Andrew Yao and Frances Yao at the CRYPTO 2005 rump session, lowering the complexity required for finding a collision in SHA-1 to 263.[19] On 18 December 2007 the details of this result were explained and verified by Martin Cochran.[20]
 
-Christophe De Cannière and Christian Rechberger further improved the attack on SHA-1 in "Finding SHA-1 Characteristics: General Results and Applications,"[21] receiving the Best Paper Award at ASIACRYPT 2006. A two-block collision for 64-round SHA-1 was presented, found using unoptimized methods with 235 compression function evaluations. As this attack requires the equivalent of about 235 evaluations, it is considered to be a significant theoretical break.[22] Their attack was extended further to 73 rounds (of 80) in 2010 by Grechnikov.[23] In order to find an actual collision in the full 80 rounds of the hash function, however, massive amounts of computer time are required. To that end, a collision search for SHA-1 using the distributed computing platform BOINC began August 8, 2007, organized by the Graz University of Technology. The effort was abandoned May 12, 2009 due to lack of progress.[24]
+Christophe De CanniÃ¨re and Christian Rechberger further improved the attack on SHA-1 in "Finding SHA-1 Characteristics: General Results and Applications,"[21] receiving the Best Paper Award at ASIACRYPT 2006. A two-block collision for 64-round SHA-1 was presented, found using unoptimized methods with 235 compression function evaluations. As this attack requires the equivalent of about 235 evaluations, it is considered to be a significant theoretical break.[22] Their attack was extended further to 73 rounds (of 80) in 2010 by Grechnikov.[23] In order to find an actual collision in the full 80 rounds of the hash function, however, massive amounts of computer time are required. To that end, a collision search for SHA-1 using the distributed computing platform BOINC began August 8, 2007, organized by the Graz University of Technology. The effort was abandoned May 12, 2009 due to lack of progress.[24]
 
-At the Rump Session of CRYPTO 2006, Christian Rechberger and Christophe De Cannière claimed to have discovered a collision attack on SHA-1 that would allow an attacker to select at least parts of the message.[25][26]
+At the Rump Session of CRYPTO 2006, Christian Rechberger and Christophe De CanniÃ¨re claimed to have discovered a collision attack on SHA-1 that would allow an attacker to select at least parts of the message.[25][26]
 
-In 2008, an attack methodology by Stéphane Manuel may produce hash collisions with an estimated theoretical complexity of 251 to 257 operations.[27]
+In 2008, an attack methodology by StÃ©phane Manuel may produce hash collisions with an estimated theoretical complexity of 251 to 257 operations.[27]
 
 Cameron McDonald, Philip Hawkes and Josef Pieprzyk presented a hash collision attack with claimed complexity 252 at the Rump session of Eurocrypt 2009.[28] However, the accompanying paper, "Differential Path for SHA-1 with complexity O(252)" has been withdrawn due to the authors' discovery that their estimate was incorrect.[29]
 
@@ -171,14 +171,14 @@ h4 = 0xC3D2E1F0
 
 Pre-processing:
 append the bit '1' to the message
-append 0 ≤ k < 512 bits '0', so that the resulting message length (in bits)
+append 0 â¤ k < 512 bits '0', so that the resulting message length (in bits)
    is congruent to 448 (mod 512)
 append length of message (before pre-processing), in bits, as 64-bit big-endian integer
 
 Process the message in successive 512-bit chunks:
 break message into 512-bit chunks
 for each chunk
-    break chunk into sixteen 32-bit big-endian words w[i], 0 ≤ i ≤ 15
+    break chunk into sixteen 32-bit big-endian words w[i], 0 â¤ i â¤ 15
 
     Extend the sixteen 32-bit words into eighty 32-bit words:
     for i from 16 to 79
@@ -193,16 +193,16 @@ for each chunk
 
     Main loop:[31]
     for i from 0 to 79
-        if 0 ≤ i ≤ 19 then
+        if 0 â¤ i â¤ 19 then
             f = (b and c) or ((not b) and d)
             k = 0x5A827999
-        else if 20 ≤ i ≤ 39
+        else if 20 â¤ i â¤ 39
             f = b xor c xor d
             k = 0x6ED9EBA1
-        else if 40 ≤ i ≤ 59
+        else if 40 â¤ i â¤ 59
             f = (b and c) or (b and d) or (c and d) 
             k = 0x8F1BBCDC
-        else if 60 ≤ i ≤ 79
+        else if 60 â¤ i â¤ 79
             f = b xor c xor d
             k = 0xCA62C1D6
 
@@ -227,17 +227,17 @@ The constant values used are chosen as nothing up my sleeve numbers: the four ro
 
 Instead of the formulation from the original FIPS PUB 180-1 shown, the following equivalent expressions may be used to compute f in the main loop above:
 
-(0  ≤ i ≤ 19): f = d xor (b and (c xor d))                (alternative 1)
-(0  ≤ i ≤ 19): f = (b and c) xor ((not b) and d)          (alternative 2)
-(0  ≤ i ≤ 19): f = (b and c) + ((not b) and d)            (alternative 3)
-(0  ≤ i ≤ 19): f = vec_sel(d, c, b)                       (alternative 4)
+(0  â¤ i â¤ 19): f = d xor (b and (c xor d))                (alternative 1)
+(0  â¤ i â¤ 19): f = (b and c) xor ((not b) and d)          (alternative 2)
+(0  â¤ i â¤ 19): f = (b and c) + ((not b) and d)            (alternative 3)
+(0  â¤ i â¤ 19): f = vec_sel(d, c, b)                       (alternative 4)
  
-(40 ≤ i ≤ 59): f = (b and c) or (d and (b or c))          (alternative 1)
-(40 ≤ i ≤ 59): f = (b and c) or (d and (b xor c))         (alternative 2)
-(40 ≤ i ≤ 59): f = (b and c) + (d and (b xor c))          (alternative 3)
-(40 ≤ i ≤ 59): f = (b and c) xor (b and d) xor (c and d)  (alternative 4)
+(40 â¤ i â¤ 59): f = (b and c) or (d and (b or c))          (alternative 1)
+(40 â¤ i â¤ 59): f = (b and c) or (d and (b xor c))         (alternative 2)
+(40 â¤ i â¤ 59): f = (b and c) + (d and (b xor c))          (alternative 3)
+(40 â¤ i â¤ 59): f = (b and c) xor (b and d) xor (c and d)  (alternative 4)
 
-Max Locktyukhin has also shown[32] that for the rounds 32–79 the computation of:
+Max Locktyukhin has also shown[32] that for the rounds 32â79 the computation of:
 
       w[i] = (w[i-3] xor w[i-8] xor w[i-14] xor w[i-16]) leftrotate 1
 
@@ -264,7 +264,7 @@ Implementations
 Libgcrypt
     A general purpose cryptographic library based on the code from GNU Privacy Guard.
 OpenSSL
-    The widely used OpenSSL crypto library includes free, open-source – implementations of SHA-1, SHA-224, SHA-256, SHA-384, and SHA-512
+    The widely used OpenSSL crypto library includes free, open-source â implementations of SHA-1, SHA-224, SHA-256, SHA-384, and SHA-512
 cryptlib
     an open source cross-platform software security toolkit library
 Crypto++

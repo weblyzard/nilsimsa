@@ -35,7 +35,7 @@ import org.apache.commons.lang3.ArrayUtils;
 public class Nilsimsa {
 	
 	private int count = 0; 		  		// num characters seen
-	private int[] acc   = new int[256]; 	// accumulators for computing the digest
+	private int[] acc   = new int[256]; // accumulators for computing the digest
 	private int[] lastch = new int[4];	// the last four seen characters
 	
 	// pre-defined transformation arrays
@@ -57,37 +57,35 @@ public class Nilsimsa {
 			"DBB0E2978852F748D3612C3A2BD18CFB" +
 			"F1CDE46AE7A9FDC437C8D2F6DF58724E");
 	
-	// pre-defined array for the computation of the bitwise difference
-	// between two nilsimsa strings.
-	private static final byte[] POPC = Nilsimsa._getByteArray( 
-		    "00010102010202030102020302030304" +  
-		    "01020203020303040203030403040405" +
-		    "01020203020303040203030403040405" +
-		    "02030304030404050304040504050506" +
-		    "01020203020303040203030403040405" +
-		    "02030304030404050304040504050506" +
-		    "02030304030404050304040504050506" +
-		    "03040405040505060405050605060607" +
-		    "01020203020303040203030403040405" +
-		    "02030304030404050304040504050506" +
-		    "02030304030404050304040504050506" +
-		    "03040405040505060405050605060607" +
-		    "02030304030404050304040504050506" +
-		    "03040405040505060405050605060607" +
-		    "03040405040505060405050605060607" +
-		    "04050506050606070506060706070708");
-	
-	
 	public Nilsimsa() {
 		reset();
+	}
+	
+	/**
+	 * Computes the Nilsimsa digest for the given byte array.
+	 * @param data
+	 * @return
+	 */
+	public static Nilsimsa getHash(byte[] data) {
+		return new Nilsimsa().update(data);
+	}
+	
+	/**
+	 * Computes the Nilsimsa digest for the given String.
+	 * @param s
+	 * @return
+	 */
+	public static Nilsimsa getHash(String s) {
+		return getHash(s.getBytes());
 	}
 	
 	/**
 	 * Updates the Nilsimsa digest using the given String
 	 * @param s: the String data to consider in the update
 	 */
-	public void update(String s)  {
-		for (int ch: s.toCharArray()) {
+	public Nilsimsa update(byte[] data)  {
+		for (int ch: data) {
+			ch = ch & 0xff;
 			count ++;
 	
 			// incr accumulators for triplets
@@ -107,20 +105,26 @@ public class Nilsimsa {
             }
             
             // adjust lastch
-            for(int i=3; i>0; i-- ) {
+            for(byte i=3; i>0; i-- ) {
             	lastch[i]=lastch[i-1];
             }
             lastch[0] = ch;
 		}
+		return this;
+	}
+	
+	public Nilsimsa update(String s) {
+		return update(s.getBytes());
 	}
 	
 	/**
 	 * resets the Hash computation
 	 */
-	private void reset() {
+	public Nilsimsa reset() {
 		count = 0;
 		Arrays.fill(acc, (byte) 0);
-		Arrays.fill(lastch, -1);		
+		Arrays.fill(lastch, -1);
+		return this;
 	}
 	
 	/*
@@ -207,18 +211,21 @@ public class Nilsimsa {
 	 * Compares a Nilsimsa object to the current one and
 	 * return the number of bits that differ.
 	 * @param cmp: the comparison object
-	 * @return the number of bits the strings differ.
+	 * @return the number of bits in the strings which differ.
 	 */
 	public int compare(Nilsimsa cmp) {
-		byte bits = 0;
-		int j;
+		int distance = 0;
+		int h1, h2;
+		
 		byte[] n1 = digest();
 		byte[] n2 = cmp.digest();
 		
-		for (int i=0; i<32; i++) {
-			j = 255 & n1[i] ^ n2[i];
-			bits += POPC[ j ];
+		for (int i=0; i<32; i+=4) {
+			h1 = (n1[i] & 0xFF) | (n1[i+1] & 0xFF) << 8 | (n1[i+2] & 0xFF) << 16 | (n1[i+3] & 0xFF) << 24; 
+			h2 = (n2[i] & 0xFF) | (n2[i+1] & 0xFF) << 8 | (n2[i+2] & 0xFF) << 16 | (n2[i+3] & 0xFF) << 24;
+			distance += Integer.bitCount(h1 ^ h2);
 		}
-		return 128 - bits;
+		return distance;
 	}
+
 }

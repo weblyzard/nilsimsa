@@ -24,17 +24,17 @@ Definition (from RFC 2104)
 
 Let:
 
-    H(·) be a cryptographic hash function
+    H(Â·) be a cryptographic hash function
     K be a secret key padded to the right with extra zeros to the input block size of the hash function, or the hash of the original key if it's longer than that block size
     m be the message to be authenticated
-    ∥ denote concatenation
-    ⊕ denote exclusive or (XOR)
-    opad be the outer padding (0x5c5c5c…5c5c, one-block-long hexadecimal constant)
-    ipad be the inner padding (0x363636…3636, one-block-long hexadecimal constant)
+    â¥ denote concatenation
+    â denote exclusive or (XOR)
+    opad be the outer padding (0x5c5c5câ¦5c5c, one-block-long hexadecimal constant)
+    ipad be the inner padding (0x363636â¦3636, one-block-long hexadecimal constant)
 
 Then HMAC(K,m) is mathematically defined by
 
-    HMAC(K,m) = H((K ⊕ opad) ∥ H((K ⊕ ipad) ∥ m)).
+    HMAC(K,m) = H((K â opad) â¥ H((K â ipad) â¥ m)).
 
 Implementation
 
@@ -45,13 +45,13 @@ function hmac (key, message)
         key = hash(key) // keys longer than blocksize are shortened
     end if
     if (length(key) < blocksize) then
-        key = key ∥ [0x00 * (blocksize - length(key))] // keys shorter than blocksize are zero-padded ('∥' is concatenation) 
+        key = key â¥ [0x00 * (blocksize - length(key))] // keys shorter than blocksize are zero-padded ('â¥' is concatenation) 
     end if
    
-    o_key_pad = [0x5c * blocksize] ⊕ key // Where blocksize is that of the underlying hash function
-    i_key_pad = [0x36 * blocksize] ⊕ key // Where ⊕ is exclusive or (XOR)
+    o_key_pad = [0x5c * blocksize] â key // Where blocksize is that of the underlying hash function
+    i_key_pad = [0x36 * blocksize] â key // Where â is exclusive or (XOR)
    
-    return hash(o_key_pad ∥ hash(i_key_pad ∥ message)) // Where '∥' is concatenation
+    return hash(o_key_pad â¥ hash(i_key_pad â¥ message)) // Where 'â¥' is concatenation
 end function
 
 The following is a Python implementation of HMAC-MD5:
@@ -79,9 +79,9 @@ Example usage
 A business that suffers from attackers that place fraudulent Internet orders may insist that all its customers deposit a secret key with them. Along with an order, a customer must supply the order's HMAC digest, computed using the customer's symmetric key. The business, knowing the customer's symmetric key, can then verify that the order originated from the stated customer and has not been tampered with.
 Design principles
 
-The design of the HMAC specification was motivated by the existence of attacks on more trivial mechanisms for combining a key with a hash function. For example, one might assume the same security that HMAC provides could be achieved with MAC = H(key ∥ message). However, this method suffers from a serious flaw: with most hash functions, it is easy to append data to the message without knowing the key and obtain another valid MAC ("length-extension attack"). The alternative, appending the key using MAC = H(message ∥ key), suffers from the problem that an attacker who can find a collision in the (unkeyed) hash function has a collision in the MAC (as two messages m1 and m2 yielding the same hash will provide the same start condition to the hash function before the appended key is hashed, hence the final hash will be the same). Using MAC = H(key ∥ message ∥ key) is better, however various security papers have suggested vulnerabilities with this approach, even when two different keys are used.[1][3][4]
+The design of the HMAC specification was motivated by the existence of attacks on more trivial mechanisms for combining a key with a hash function. For example, one might assume the same security that HMAC provides could be achieved with MAC = H(key â¥ message). However, this method suffers from a serious flaw: with most hash functions, it is easy to append data to the message without knowing the key and obtain another valid MAC ("length-extension attack"). The alternative, appending the key using MAC = H(message â¥ key), suffers from the problem that an attacker who can find a collision in the (unkeyed) hash function has a collision in the MAC (as two messages m1 and m2 yielding the same hash will provide the same start condition to the hash function before the appended key is hashed, hence the final hash will be the same). Using MAC = H(key â¥ message â¥ key) is better, however various security papers have suggested vulnerabilities with this approach, even when two different keys are used.[1][3][4]
 
-No known extensions attacks have been found against the current HMAC specification which is defined as H(key1 ∥ H(key2 ∥ message)) because the outer application of the hash function masks the intermediate result of the internal hash. The values of ipad and opad are not critical to the security of the algorithm, but were defined in such a way to have a large Hamming distance from each other and so the inner and outer keys will have fewer bits in common.
+No known extensions attacks have been found against the current HMAC specification which is defined as H(key1 â¥ H(key2 â¥ message)) because the outer application of the hash function masks the intermediate result of the internal hash. The values of ipad and opad are not critical to the security of the algorithm, but were defined in such a way to have a large Hamming distance from each other and so the inner and outer keys will have fewer bits in common.
 Security
 
 The cryptographic strength of the HMAC depends upon the size of the secret key that is used. The most common attack against HMACs is brute force to uncover the secret key. HMACs are substantially less affected by collisions than their underlying hashing algorithms alone.[5] [6] [7] Therefore, HMAC-MD5 does not suffer from the same weaknesses that have been found in MD5.

@@ -14,3 +14,10 @@ Original C nilsimsa-0.2.4 implementation by cmeclax:
 * Java 7 or higher
 * Apache Commons libraries from http://commons.apache.org/
 
+## Changelog
+
+* 0.0.2: 
+  - added support for hashing byte arrays and static constructors
+  - `compare` now uses the quicker Integer.bitcount method
+  - `compare` yields the number of bits that differ rather than the difference to 128 equal bits.
+  - improved test coverage

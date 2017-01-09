@@ -70,7 +70,7 @@ Rather than requiring all desired functionality to be built into the language's 
 
 The design of Python offers only limited support for functional programming in the Lisp tradition. However, Python's design philosophy exhibits significant similarities to those of minimalistic Lisp-family languages, such as Scheme.[citation needed] The language has map(), reduce() and filter() functions, and the list comprehensions added in Python 2.0 have since been extended with comprehensions for dictionaries and sets, as well as generator expressions. The standard library has two modules (itertools and functools) that implement functional tools borrowed from Haskell and Standard ML.[26]
 
-While offering choice in coding methodology, the Python philosophy rejects exuberant syntax, such as in Perl, in favor of a sparser, less-cluttered grammar. Python's developers expressly promote a particular "culture" or ideology based on what they want the language to be, favoring language forms they see as "beautiful", "explicit" and "simple". As Alex Martelli put it in his Python Cookbook (2nd ed., p. 230): "To describe something as clever is NOT considered a compliment in the Python culture." Python's philosophy rejects the Perl "there is more than one way to do it" approach to language design in favor of "there should be one—and preferably only one—obvious way to do it".[27]
+While offering choice in coding methodology, the Python philosophy rejects exuberant syntax, such as in Perl, in favor of a sparser, less-cluttered grammar. Python's developers expressly promote a particular "culture" or ideology based on what they want the language to be, favoring language forms they see as "beautiful", "explicit" and "simple". As Alex Martelli put it in his Python Cookbook (2nd ed., p. 230): "To describe something as clever is NOT considered a compliment in the Python culture." Python's philosophy rejects the Perl "there is more than one way to do it" approach to language design in favor of "there should be oneâand preferably only oneâobvious way to do it".[27]
 
 Python's developers eschew premature optimization, and moreover, reject patches to non-critical parts of CPython which would offer a marginal increase in speed at the cost of clarity.[28] When speed is important, Python programmers tend to try using a JIT compiler such as Psyco or using an alternative language implementation such as PyPy. When pure Python code is not fast enough, time-critical functions can be rewritten in "closer to the metal" languages such as C, or by translating (a dialect of) Python code to C code using tools like Cython.[29]
 
@@ -81,9 +81,9 @@ An important goal of the Python developers is making Python fun to use. This is 
 
 A common neologism in the Python community is pythonic, which can have a wide range of meanings related to program style. To say that code is pythonic is to say that it uses Python idioms well, that it is natural or shows fluency in the language. Likewise, to say of an interface or language feature that it is pythonic is to say that it works well with Python idioms, that its use meshes well with the rest of the language.
 
-In contrast, a mark of unpythonic code is that it attempts to write C++ (or Lisp, Perl, or Java) code in Python—that is, provides a rough transcription rather than an idiomatic translation of forms from another language. The concept of pythonicity is tightly bound to Python's minimalist philosophy of readability and avoiding the "there's more than one way to do it" approach. Unreadable code or incomprehensible idioms are unpythonic.
+In contrast, a mark of unpythonic code is that it attempts to write C++ (or Lisp, Perl, or Java) code in Pythonâthat is, provides a rough transcription rather than an idiomatic translation of forms from another language. The concept of pythonicity is tightly bound to Python's minimalist philosophy of readability and avoiding the "there's more than one way to do it" approach. Unreadable code or incomprehensible idioms are unpythonic.
 
-Users and admirers of Python—most especially those considered knowledgeable or experienced—are often referred to as Pythonists, Pythonistas, and Pythoneers.[33]
+Users and admirers of Pythonâmost especially those considered knowledgeable or experiencedâare often referred to as Pythonists, Pythonistas, and Pythoneers.[33]
 
 The prefix Py can be used to show that something is related to Python. Examples of the use of this prefix in names of Python applications or libraries include Pygame, a binding of SDL to Python (commonly used to create games); PyS60, an implementation for the Symbian S60 operating system; PyQt and PyGTK, which bind Qt and GTK, respectively, to Python; and PyPy, a Python implementation written in Python. The prefix is also used outside of naming software packages: the major Python conference is named PyCon.
 Usage
@@ -130,7 +130,7 @@ Python's statements include (among others):
     The with statement (from Python 2.5), which encloses a code block within a context manager (for example, acquiring a lock before the block of code is run, and releasing the lock afterwards).
     The pass statement, which serves as a NOP and can be used in place of a code block.
     The assert statement, used during debugging to check for conditions that ought to apply.
-    The yield statement, which returns a value from a generator function. (From Python 2.5, yield is also an operator. This form is used to implement coroutines – see below.)
+    The yield statement, which returns a value from a generator function. (From Python 2.5, yield is also an operator. This form is used to implement coroutines â see below.)
 
 Each statement has its own semantics: for example, the def statement does not execute its block immediately, unlike most other statements.
 

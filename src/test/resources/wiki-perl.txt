@@ -28,7 +28,7 @@ Contents
     1 History
         1.1 Early versions
         1.2 Early Perl 5
-        1.3 2000–present
+        1.3 2000âpresent
         1.4 Name
         1.5 Camel symbol
             1.5.1 Onion symbol
@@ -77,7 +77,7 @@ Perl 5.004 was released on May 15, 1997, and included among other things the UNI
 Perl also now supported running under Microsoft Windows and several other operating systems.[16]
 
 Perl 5.005 was released on July 22, 1998. This release included several enhancements to the regex engine, new hooks into the backend through the B::* modules, the qr// regex quote operator, a large selection of other new core modules, and added support for several more operating systems, including BeOS.[18]
-2000–present
+2000âpresent
 
 Perl 5.6 was released on March 22, 2000. Major changes included 64-bit support, Unicode string representation, large file support (i.e. files over 2 GiB) and the "our" keyword.[19][20] When developing Perl 5.6, the decision was made to switch the versioning scheme to one more similar to other open source projects; after 5.005_63, the next version became 5.5.640, with plans for development versions to have odd numbers and stable versions to have even numbers.
 
@@ -85,7 +85,7 @@ In 2000, Larry Wall put forth a call for suggestions for a new version of Perl f
 
 Perl 5.8 was first released on July 18, 2002, and had nearly yearly updates since then. The latest version of Perl 5.8 is 5.8.9, released December 14, 2008. Perl 5.8 improved unicode support, added a new IO implementation, added a new thread implementation, improved numeric accuracy, and added several new modules.[22]
 
-In 2004, work began on the Synopses – originally documents that summarized the Apocalypses, but which became the specification for the Perl 6 language. In February 2005, Audrey Tang began work on Pugs, a Perl 6 interpreter written in Haskell.[23] This was the first concerted effort towards making Perl 6 a reality. This effort stalled in 2006.[24]
+In 2004, work began on the Synopses â originally documents that summarized the Apocalypses, but which became the specification for the Perl 6 language. In February 2005, Audrey Tang began work on Pugs, a Perl 6 interpreter written in Haskell.[23] This was the first concerted effort towards making Perl 6 a reality. This effort stalled in 2006.[24]
 
 On December 18, 2007, the 20th anniversary of Perl 1.0, Perl 5.10.0 was released. Perl 5.10.0 included notable new features, which brought it closer to Perl 6. These included a switch statement (called "given"/"when"), regular expressions updates, and the smart match operator, "~~".[25][26] Around this same time, development began in earnest on another implementation of Perl 6 known as Rakudo Perl, developed in tandem with the Parrot virtual machine. As of November 2009, Rakudo Perl has had regular monthly releases and now is the most complete implementation of Perl 6.
 
@@ -131,7 +131,7 @@ Perl takes lists from Lisp, hashes ("associative arrays") from AWK, and regular 
 
 Perl 5 added features that support complex data structures, first-class functions (that is, closures as values), and an object-oriented programming model. These include references, packages, class-based method dispatch, and lexically scoped variables, along with compiler directives (for example, the strict pragma). A major additional feature introduced with Perl 5 was the ability to package code as reusable modules. Larry Wall later stated that "The whole intent of Perl 5's module system was to encourage the growth of Perl culture rather than the Perl core."[40]
 
-All versions of Perl do automatic data-typing and automatic memory-management. The interpreter knows the type and storage requirements of every data object in the program; it allocates and frees storage for them as necessary using reference counting (so it cannot deallocate circular data structures without manual intervention). Legal type-conversions — for example, conversions from number to string — are done automatically at run time; illegal type conversions are fatal errors.
+All versions of Perl do automatic data-typing and automatic memory-management. The interpreter knows the type and storage requirements of every data object in the program; it allocates and frees storage for them as necessary using reference counting (so it cannot deallocate circular data structures without manual intervention). Legal type-conversions â for example, conversions from number to string â are done automatically at run time; illegal type conversions are fatal errors.
 Design
 
 The design of Perl can be understood as a response to three broad trends in the computer industry: falling hardware costs, rising labor costs, and improvements in compiler technology. Many earlier computer languages, such as Fortran and C, aimed to make efficient use of expensive computer hardware. In contrast, Perl is designed to make efficient use of expensive computer-programmers.
@@ -164,7 +164,7 @@ Implementation
 
 Perl is implemented as a core interpreter, written in C, together with a large collection of modules, written in Perl and C. As of 2010, the stable version (5.12.3) is 14.2 MB when packaged in a tar file and gzip compressed.[48] The interpreter is 150,000 lines of C code and compiles to a 1 MB executable on typical machine architectures. Alternatively, the interpreter can be compiled to a link library and embedded in other programs. There are nearly 500 modules in the distribution, comprising 200,000 lines of Perl and an additional 350,000 lines of C code. (Much of the C code in the modules consists of character-encoding tables.)
 
-The interpreter has an object-oriented architecture. All of the elements of the Perl language—scalars, arrays, hashes, coderefs, filehandles—are represented in the interpreter by C structs. Operations on these structs are defined by a large collection of macros, typedefs, and functions; these constitute the Perl C API. The Perl API can be bewildering to the uninitiated, but its entry points follow a consistent naming-scheme, which provides guidance to those who use it.
+The interpreter has an object-oriented architecture. All of the elements of the Perl languageâscalars, arrays, hashes, coderefs, filehandlesâare represented in the interpreter by C structs. Operations on these structs are defined by a large collection of macros, typedefs, and functions; these constitute the Perl C API. The Perl API can be bewildering to the uninitiated, but its entry points follow a consistent naming-scheme, which provides guidance to those who use it.
 
 The life of a Perl interpreter divides broadly into a compile phase and a run phase.[49] In Perl, the phases are the major stages in the interpreter's life-cycle. Each interpreter goes through each phase only once, and the phases follow in a fixed sequence.
 

@@ -3,21 +3,24 @@ package com.weblyzard.lib.string.nilsimsa;
 import static org.junit.Assert.*;
 
 import java.io.*;
+import java.net.URISyntaxException;
 import java.net.URL;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
 
 import org.apache.commons.codec.Charsets;
-import org.apache.commons.io.FileUtils;
 import org.junit.Test;
 
 /**
  * Test the Nilsimsa algorithm
- * @author Albert Weichselbraun
+ * @author Albert Weichselbraun <albert@weichselbraun.net>
  *
  */
 public class NilsimsaTest {
 	
-	private final static String CONTENT_ENCODING = "UTF8";
+	private final static Charset CONTENT_ENCODING = Charsets.UTF_8;
 	private final static String[] TEST_DATA = { 
 		"73302df80673894c115249b1f880abb1ec2b09f1c9726e642b690291e636fe6f c",
 		"67b02df81323816c51019d71da92612dede05cf1cd20fb042b218310e61368ef hmac",
@@ -71,12 +74,41 @@ public class NilsimsaTest {
 			Nilsimsa referenceHash = Nilsimsa.getHash(referenceString);
 			// System.out.print("{");
 			for (int j=0; j<TEST_DATA.length; j++) {
-				int distance = referenceHash.compare(Nilsimsa.getHash(TEST_DATA[j]));
+				int distance = referenceHash.bitwiseDifference(Nilsimsa.getHash(TEST_DATA[j]));
 				// System.out.print(distance + ", ");
 				assertEquals(REFERENCE_DISTANCE[i][j], distance);
 			}
 			// System.out.println("}, ");
 		}
+	}
+	
+	@Test
+	public void equalsAndHashCodeTest() {
+		Nilsimsa h1, h2;
+		
+		// test equals and hash code
+		for (int i=0; i<TEST_DATA.length; i++) {
+			h1 = Nilsimsa.getHash(TEST_DATA[i]);
+			for (int j=0; j<TEST_DATA.length; j++) {
+				h2 = Nilsimsa.getHash(TEST_DATA[j]);
+				if (j == i) {
+					assertEquals(h1, h2);
+					assertEquals(h1.hashCode(), h2.hashCode());
+				} else {
+					assertNotEquals(h1, h2);
+					assertNotEquals(h1.hashCode(), h2.hashCode());
+				}
+			}
+		}
+	}
+	
+	@Test
+	public void equalsSpecialCasesTest() {
+		Nilsimsa h = Nilsimsa.getHash("test");
+		assertNotEquals(h, null);
+		assertNotEquals(h, null);
+		assertNotEquals(h, this);
+		assertEquals(h, h);
 	}
 	
 	/**
@@ -92,10 +124,9 @@ public class NilsimsaTest {
  			testSet = testData.split(" ");
  			try {
  				URL resource = NilsimsaTest.class.getClassLoader().getResource("wiki-"+ testSet[1] + ".txt");
-				documentContent = FileUtils.readFileToString(
-						new File( resource.getFile()), CONTENT_ENCODING);
+ 				documentContent = new String(Files.readAllBytes(Paths.get(resource.toURI())), CONTENT_ENCODING);
 				result.put( testSet[0], documentContent);
-			} catch (IOException e) {
+			} catch (IOException | URISyntaxException e) {
 				e.printStackTrace();
 				fail("Cannot read corpus.");
 			}

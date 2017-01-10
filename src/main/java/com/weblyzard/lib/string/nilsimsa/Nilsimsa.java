@@ -2,17 +2,20 @@ package com.weblyzard.lib.string.nilsimsa;
 
 import java.util.*;
 
-import org.apache.commons.codec.DecoderException;
+import javax.xml.bind.DatatypeConverter;
+
 import org.apache.commons.codec.binary.Hex;
 import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 /**
  * Computes the Nilsimsa hash for the given string.
  * @author Albert Weichselbraun <albert.weichselbraun@htwchur.ch>
  *                              <weichselbraun@weblyzard.com>
  * 
- * This class is a translation of the Python implementation by Michael Itz
- * to the Java language <http://code.google.com/p/py-nilsimsa>.
+ * This class is based on the Python implementation by Michael Itz
+ * <http://code.google.com/p/py-nilsimsa>.
  * 
  * Original C nilsimsa-0.2.4 implementation by cmeclax:
  * <http://ixazon.dynip.com/~cmeclax/nilsimsa.html>
@@ -34,12 +37,13 @@ import org.apache.commons.lang3.ArrayUtils;
  */
 public class Nilsimsa {
 	
-	private int count = 0; 		  		// num characters seen
-	private int[] acc   = new int[256]; // accumulators for computing the digest
-	private int[] lastch = new int[4];	// the last four seen characters
+	private int count = 0; 		  		  // num characters seen
+	private int[] acc   = new int[256];   // accumulators for computing the digest
+	private int[] lastch = new int[4];	  // the last four seen characters
+	private byte[] digest = null; 		  // the Nilsimsa digest
 	
 	// pre-defined transformation arrays
-	private static final byte[] TRAN = Nilsimsa._getByteArray(
+	private static final byte[] TRAN = DatatypeConverter.parseHexBinary(
 			"02D69E6FF91D04ABD022161FD873A1AC" + 
 			"3B7062961E6E8F399D05144AA6BEAE0E" +
 			"CFB99C9AC76813E12DA4EB518D646B50" +
@@ -59,24 +63,6 @@ public class Nilsimsa {
 	
 	public Nilsimsa() {
 		reset();
-	}
-	
-	/**
-	 * Computes the Nilsimsa digest for the given byte array.
-	 * @param data
-	 * @return
-	 */
-	public static Nilsimsa getHash(byte[] data) {
-		return new Nilsimsa().update(data);
-	}
-	
-	/**
-	 * Computes the Nilsimsa digest for the given String.
-	 * @param s
-	 * @return
-	 */
-	public static Nilsimsa getHash(String s) {
-		return getHash(s.getBytes());
 	}
 	
 	/**
@@ -110,6 +96,7 @@ public class Nilsimsa {
             }
             lastch[0] = ch;
 		}
+		digest = null;
 		return this;
 	}
 	
@@ -124,21 +111,8 @@ public class Nilsimsa {
 		count = 0;
 		Arrays.fill(acc, (byte) 0);
 		Arrays.fill(lastch, -1);
+		this.digest = null;
 		return this;
-	}
-	
-	/*
-	 * Converts the given hexString to a byte array. 
-	 * @param hexString: the hexString to convert
-	 * @return the corresponding byte array
-	 */
-	private static byte[] _getByteArray( String hexString ) {
-		try {
-			return Hex.decodeHex( hexString.toCharArray());
-		} catch (DecoderException e) {
-			e.printStackTrace();
-			return null;
-		}
 	}
 	
 	/**
@@ -153,9 +127,12 @@ public class Nilsimsa {
 	 * @return the digest for the current Nilsimsa object.
 	 */
 	public byte[] digest() {
+		if (digest != null) {
+			return digest;
+		}
 		int total = 0;
 		int threshold;
-		byte[] digest = new byte[32];
+		digest = new byte[32];
 		Arrays.fill(digest, (byte)0);
 		
 		if (count == 3) {
@@ -174,46 +151,85 @@ public class Nilsimsa {
 		}		
 		ArrayUtils.reverse( digest );
 		return digest;
+	}	
+
+	/**
+	 * Compute the Nilsimsa digest for the given String.
+	 * @param data: an array of bytes to hash
+	 * @return the Nilsimsa digest.
+	 */
+	public byte[] digest(byte[] data) {
+		reset();
+		update(data);
+		return digest();
 	}
-	
 	
 	/**
-	 * @return a String representation of the current state of
-	 *          the Nilsimsa object. 
+	 * Computes the Nilsimsa digest for the given byte array.
+	 * @param data
+	 * @return
 	 */
-	public String hexdigest() {
-		return Hex.encodeHexString( digest() );
+	public static Nilsimsa getHash(byte[] data) {
+		return new Nilsimsa().update(data);
 	}
 	
-
+	/**
+	 * Computes the Nilsimsa digest for the given String.
+	 * @param s
+	 * @return
+	 */
+	public static Nilsimsa getHash(String s) {
+		return getHash(s.getBytes());
+	}
+	
 	/**
 	 * Compute the Nilsimsa digest for the given String.
 	 * @param s: the String to hash
 	 * @return the Nilsimsa digest.
 	 */
 	public byte[] digest(String s) {
-		reset();
-		update(s);
-		return digest();
+		return digest(s.getBytes());
 	}
 
+
+	/**
+	 * @return a String representation of the current state of
+	 *          the Nilsimsa object. 
+	 */
+	public String hexdigest() {
+		return Hex.encodeHexString(digest());
+	}
+
+	/**
+	 * Compute the Nilsimsa hexDigest for the given String.
+	 * @param data: an array of bytes to hash
+	 * @return the Nilsimsa hexdigest.
+	 */
+	public String hexdigest(byte[] data) {
+		digest(data);
+		return hexdigest();
+	}
+
+	
 	/**
 	 * Compute the Nilsimsa hexDigest for the given String.
 	 * @param s: the String to hash
 	 * @return the Nilsimsa hexdigest.
 	 */
-
 	public String hexdigest(String s) {
-		return Hex.encodeHexString( digest(s) );
+		digest(s);
+		return hexdigest();
 	}
 	
 	/**
 	 * Compares a Nilsimsa object to the current one and
 	 * return the number of bits that differ.
-	 * @param cmp: the comparison object
-	 * @return the number of bits in the strings which differ.
+	 * @param cmp: 
+	 * 		the comparison object
+	 * @return 
+	 * 		the number of bits in which the Nilsimsa digests differ.
 	 */
-	public int compare(Nilsimsa cmp) {
+	public int bitwiseDifference(Nilsimsa cmp) {
 		int distance = 0;
 		int h1, h2;
 		
@@ -226,6 +242,33 @@ public class Nilsimsa {
 			distance += Integer.bitCount(h1 ^ h2);
 		}
 		return distance;
+	}
+	
+	/**
+	 * Returns a value between -128 and + 128 that indicates the difference between 
+	 * the nilsimsa digest of the current object and cmp.
+	 * @param cmp:
+	 * 		comparison object
+	 * @return
+	 * 		a value between -128 (no matching bits) and 128 (all bits match; both hashes are equal)
+	 */
+	public int compare(Nilsimsa cmp) {
+		return 128 - bitwiseDifference(cmp);
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if (o == null) { return false; }
+		if (o == this) { return true; }
+		if (o.getClass() != getClass()) { return false; };
+		
+		return new EqualsBuilder()
+				.append(digest(), ((Nilsimsa)o).digest()).isEquals();
+	}
+	
+	@Override
+	public int hashCode() {
+		return new HashCodeBuilder().append(digest()).toHashCode();
 	}
 
 }

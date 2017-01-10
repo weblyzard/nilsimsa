@@ -20,7 +20,7 @@ Original C nilsimsa-0.2.4 implementation by cmeclax:
   - added support for hashing byte arrays and static constructors
   - cache hash digest
   - implemented `equals` and `hashCode`
-  - `compare` now uses the quicker Integer.bitcount method
-  - added `bitwiseDifference` which yield the number of bits that differ between hashes
+  - `compare` now uses the much faster Integer.bitcount method
+  - added `bitwiseDifference` which yields the number of bits that differ between hashes
   - improved test coverage
   - code cleanup

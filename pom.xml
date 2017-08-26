@@ -1,96 +1,193 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.weblyzard.lib.string</groupId>
-  <artifactId>nilsimsa</artifactId>
-  <version>0.0.2</version>
-  <packaging>jar</packaging>
+	<groupId>com.weblyzard.lib.string</groupId>
+	<artifactId>nilsimsa</artifactId>
+	<version>0.0.3</version>
+	<packaging>jar</packaging>
 
-  <name>nilsimsa</name>
-  <url>http://weichselbraun.net/software.html#nilsimsa</url>
+	<name>nilsimsa</name>
+    <description>A Java implementation of the Nilsimsa locality sensitive hash. The Nilsimsa algorithm computes a 256 bit hash value that indicates how different two strings are. The more similar the strings the smaller will be the bitwise difference between their respective Nilsimsa hashes. Therefore, Nilsimsa is well suited to detect texts of the same origin, such as slightly modified spam messages, updated newspaper articles, etc.</description>
+	<url>https://github.com/weblyzard/nilsimsa</url>
 
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
+	<developers>
+		<developer>
+			<name>Albert Weichselbraun</name>
+			<email>albert@weichselbraun.net</email>
+			<organization>webLyzard technology</organization>
+			<organizationUrl>http://weblyzard.com</organizationUrl>
+		</developer>
+	</developers>
 
-  <distributionManagement>
-    <repository>
-      <uniqueVersion>false</uniqueVersion>
-      <id>code.semanticlab.net</id>
-      <name>semanticlab deployment repository</name>
-      <url>dav:http://code.semanticlab.net/deploy/</url>
-    </repository>
-    <downloadUrl>dav:http://code.semanticlab.net/deploy/</downloadUrl>
-  </distributionManagement>
 
-  <dependencies>
-    <dependency>
-    	<groupId>commons-codec</groupId>
-    	<artifactId>commons-codec</artifactId>
-    </dependency>
-    <dependency>
-    	<groupId>org.apache.commons</groupId>
-    	<artifactId>commons-lang3</artifactId>
-    </dependency>
-    <dependency>
-    	<groupId>junit</groupId>
-    	<artifactId>junit</artifactId>
-    </dependency>
-  </dependencies>
-  <description>A Java implementation of the Nilsimsa locality sensitive hash. The Nilsimsa algorithm computes a 256 bit hash value that indicates how different two strings are. The more similar the strings the smaller will be the bitwise difference between their respective Nilsimsa hashes. Therefore, Nilsimsa is well suited to detect texts of the same origin, such as slightly modified spam messages, updated newspaper articles, etc.</description>
-  <dependencyManagement>
-  	<dependencies>
-  		<dependency>
-  			<groupId>commons-codec</groupId>
-  			<artifactId>commons-codec</artifactId>
-  			<version>1.7</version>
-  		</dependency>
-  		<dependency>
-  			<groupId>org.apache.commons</groupId>
-  			<artifactId>commons-lang3</artifactId>
-  			<version>3.1</version>
-  		</dependency>
-  		<dependency>
-  			<groupId>commons-io</groupId>
-  			<artifactId>commons-io</artifactId>
-  			<version>2.4</version>
-  		</dependency>
-  		<dependency>
-  			<groupId>junit</groupId>
-  			<artifactId>junit</artifactId>
-  			<version>4.11</version>
-  		</dependency>
-  	</dependencies>
-  </dependencyManagement>
-  <build>
-  	<plugins>
-  		<plugin>
-  			<groupId>org.apache.maven.plugins</groupId>
-  			<artifactId>maven-surefire-plugin</artifactId>
-  			<version>2.13</version>
-  		</plugin>
-  		<plugin>
-  			<groupId>org.apache.maven.plugins</groupId>
-  			<artifactId>maven-jar-plugin</artifactId>
-  			<version>2.4</version>
-  		</plugin>
-    	<plugin>
-    		<groupId>org.apache.maven.plugins</groupId>
-    		<artifactId>maven-compiler-plugin</artifactId>
-    		<version>3.0</version>
-    		<configuration>
-    		  <source>1.7</source>
-    		  <target>1.7</target>
-    		</configuration>
-    	</plugin>  		
-  	</plugins>
- 	<extensions>
-		<extension>
-			<groupId>org.apache.maven.wagon</groupId>
-			<artifactId>wagon-webdav-jackrabbit</artifactId>
-			<version>2.4</version>
-		</extension>
-	</extensions>  	
-  </build>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<licenses>
+		<license>
+			<name>GNU General Public License, Version 3</name>
+			<url>https://www.gnu.org/licenses/gpl-3.0.en.html</url>
+		</license>
+	</licenses>
+
+	<scm>
+		<connection>scm:git:git://github.com/weblyzard/nilsimsa.git</connection>
+		<developerConnection>scm:git:ssh://github.com:weblyzard/nilsimsa.git</developerConnection>
+		<url>https://github.com/weblyzard/nilsimsa/tree/master</url>
+	</scm>
+
+	<!-- profiles for the maven deployments -->
+	<profiles>
+		<profile>
+			<id>profile-semanticlab</id>
+			<properties>
+				<environment>semanticlab</environment>
+				<snapshot-repository-id>code.semanticlab.net</snapshot-repository-id>
+				<snapshot-repository-url>dav:http://code.semanticlab.net/deploy/</snapshot-repository-url>
+				<repository-id>code.semanticlab.net</repository-id>
+				<repository-url>dav:http://code.semanticlab.net/deploy/</repository-url>
+			</properties>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+				<property>
+					<name>environment</name>
+					<value>semanticlab</value>
+				</property>
+			</activation>
+		</profile>
+		<profile>
+			<id>profile-mavencentral</id>
+			<properties>
+				<environment>mavencentral</environment>
+				<snapshot-repository-id>
+					ossrh
+				</snapshot-repository-id>
+				<snapshot-repository-url>
+					https://oss.sonatype.org/content/repositories/snapshots
+				</snapshot-repository-url>
+				<repository-id>ossrh</repository-id>
+				<repository-url>
+					https://oss.sonatype.org/service/local/staging/deploy/maven2/
+				</repository-url>
+			</properties>
+			<activation>
+				<property>
+					<name>environment</name>
+					<value>mavencentral</value>
+				</property>
+			</activation>
+		</profile>
+	</profiles>
+
+	<distributionManagement>
+		<snapshotRepository>
+			<id>${snapshot-repository-id}</id>
+			<url>${snapshot-repository-url}</url>
+		</snapshotRepository>
+		<repository>
+			<id>${repository-id}</id>
+			<url>${repository-url}</url>
+		</repository>
+	</distributionManagement>
+
+
+
+	<dependencies>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.6</version>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.13</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>2.4</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.0</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.7.9</version>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>2.2.1</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar-no-fork</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.9.1</version>
+				<configuration>
+					<additionalparam>-Xdoclint:none</additionalparam>
+				</configuration>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-gpg-plugin</artifactId>
+				<version>1.6</version>
+				<executions>
+					<execution>
+						<id>sign-artifacts</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>sign</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+
+		</plugins>
+		<extensions>
+			<extension>
+				<groupId>org.apache.maven.wagon</groupId>
+				<artifactId>wagon-webdav-jackrabbit</artifactId>
+				<version>2.4</version>
+			</extension>
+		</extensions>
+	</build>
 </project>

@@ -11,8 +11,7 @@ Original C nilsimsa-0.2.4 implementation by cmeclax:
 
 ## Requirements
 
-* Java 7 or higher
-* Apache Commons libraries from http://commons.apache.org/
+* Java 8 or higher
 
 ## Changelog
 
@@ -24,3 +23,8 @@ Original C nilsimsa-0.2.4 implementation by cmeclax:
   - added `bitwiseDifference` which yields the number of bits that differ between hashes
   - improved test coverage
   - code cleanup
+
+* 0.0.3:
+  - reduced the number of necessary dependencies (commons-io and commons-codec)
+  - improved javadoc
+  - publish library on maven central

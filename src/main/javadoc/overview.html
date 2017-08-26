@@ -1,0 +1,23 @@
+<body>
+  A Java implementation of the Nilsimsa locality sensitive hash. The Nilsimsa 
+  algorithm computes a 256 bit hash value that indicates how different two 
+  strings are. The more similar the strings the smaller will be the bitwise 
+  difference between their respective Nilsimsa hashes. Therefore, Nilsimsa is 
+  well suited to detect texts of the same origin, such as slightly modified spam 
+  messages, updated newspaper articles, etc. 
+  <br />
+  The {@link com.weblyzard.lib.string.nilsimsa.Nilsimsa#bitwiseDifference} method can be 
+  used to determine how closely two Strings differ from each other by returning 
+  the bitwise difference of their {@link com.weblyzard.lib.string.nilsimsa.Nilsimsa}
+  hashes.
+
+  <h2>Example code:</h2>
+
+  <pre>
+  Nilsimsa h1 = Nilsimsa.getHash("The first sentence.");
+  Nilsimsa h2 = Nilsimsa.getHash("The second sentence.");
+  
+  System.out.println("The Nilsimsa hashes between these two sentences differ by " 
+     + h1..bitwiseDifference(h2) + " bits.");
+  </pre>
+</body>

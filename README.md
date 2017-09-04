@@ -1,4 +1,6 @@
 ## Nilsimsa for Java
+[![Build Status](https://www.travis-ci.org/weblyzard/nilsimsa.png?branch=master)](https://www.travis-ci.org/weblyzard/nilsimsa)
+
 
 Nilsimsa is a hashing function which belongs to the family of locality sensitive hashes (LSH). This library provides functions to compute and compare the Nilsimsa string similarity hash for a given string.
  

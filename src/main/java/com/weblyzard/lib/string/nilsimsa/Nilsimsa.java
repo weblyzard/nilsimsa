@@ -2,9 +2,6 @@ package com.weblyzard.lib.string.nilsimsa;
 
 import java.util.*;
 import javax.xml.bind.DatatypeConverter;
-import org.apache.commons.lang3.ArrayUtils;
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 /**
  * Computes the Nilsimsa hash for the given string.
@@ -15,7 +12,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
  * <p>Original C nilsimsa-0.2.4 implementation by cmeclax:
  * <http://ixazon.dynip.com/~cmeclax/nilsimsa.html>
  *
- * @author Albert Weichselbraunex
+ * @author Albert Weichselbraun
  */
 public class Nilsimsa {
 
@@ -98,7 +95,7 @@ public class Nilsimsa {
     }
 
     /** Accumulator for a transition n between the chars a, b, c */
-    private int tran3(int a, int b, int c, int n) {
+    private static int tran3(int a, int b, int c, int n) {
         int i = (c) ^ TRAN[n];
         return (((TRAN[(a + n) & 255] ^ TRAN[b & 0xff] * (n + n + 1)) + TRAN[i & 0xff]) & 255);
     }
@@ -124,10 +121,9 @@ public class Nilsimsa {
 
         for (int i = 0; i < 256; i++) {
             if (acc[i] > threshold) {
-                digest[i >> 3] += 1 << (i & 7);
+                digest[31-(i >> 3)] += 1 << (i & 7);
             }
         }
-        ArrayUtils.reverse(digest);
         return digest;
     }
 
@@ -244,21 +240,14 @@ public class Nilsimsa {
 
     @Override
     public boolean equals(Object o) {
-        if (o == null) {
-            return false;
-        }
-        if (o == this) {
-            return true;
-        }
-        if (o.getClass() != getClass()) {
-            return false;
-        }
-
-        return new EqualsBuilder().append(digest(), ((Nilsimsa) o).digest()).isEquals();
+    	if (o == null || o.getClass() != getClass()) {
+    		return false;
+    	}
+    	return Arrays.equals(digest(), ((Nilsimsa)  o).digest());
     }
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder().append(digest()).toHashCode();
+    	return Arrays.hashCode(digest);
     }
 }

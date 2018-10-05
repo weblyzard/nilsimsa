@@ -14,7 +14,7 @@ import org.junit.Test;
 /**
  * Test the Nilsimsa algorithm
  *
- * @author Albert Weichselbraun <albert@weichselbraun.net>
+ * @author Albert Weichselbraun
  */
 public class NilsimsaTest {
 
@@ -91,10 +91,8 @@ public class NilsimsaTest {
             // System.out.print("{");
             for (int j = 0; j < TEST_DATA.length; j++) {
                 int distance = referenceHash.bitwiseDifference(Nilsimsa.getHash(TEST_DATA[j]));
-                // System.out.print(distance + ", ");
                 assertEquals(REFERENCE_DISTANCE[i][j], distance);
             }
-            // System.out.println("}, ");
         }
     }
 
@@ -122,9 +120,10 @@ public class NilsimsaTest {
     public void equalsSpecialCasesTest() {
         Nilsimsa h = Nilsimsa.getHash("test");
         assertNotEquals(h, null);
-        assertNotEquals(h, null);
+        assertNotEquals(h, "");
         assertNotEquals(h, this);
         assertEquals(h, h);
+        assertEquals(h, Nilsimsa.getHash("test"));
     }
 
     /**

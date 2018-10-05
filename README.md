@@ -16,6 +16,15 @@ Original C nilsimsa-0.2.4 implementation by cmeclax:
 * Java 8 or higher
 
 ## Changelog
+* 0.0.4:
+  - slightly more efficient nilsimsa computation
+  - removed commons-lang3 dependency
+  - updated maven build chain
+
+* 0.0.3:
+  - reduced the number of necessary dependencies (commons-io and commons-codec)
+  - improved javadoc
+  - publish library on maven central
 
 * 0.0.2: 
   - added support for hashing byte arrays and static constructors
@@ -26,7 +35,4 @@ Original C nilsimsa-0.2.4 implementation by cmeclax:
   - improved test coverage
   - code cleanup
 
-* 0.0.3:
-  - reduced the number of necessary dependencies (commons-io and commons-codec)
-  - improved javadoc
-  - publish library on maven central
+

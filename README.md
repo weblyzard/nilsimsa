@@ -64,5 +64,5 @@ for (String firstString: testList) {
 ```
 
 ## Changelog
-Please refer to the [releases](/weblyzard/nilsimsa/releases) page.
+Please refer to the [releases](https://github.com/weblyzard/nilsimsa/releases) page.
 

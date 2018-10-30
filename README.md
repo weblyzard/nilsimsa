@@ -8,31 +8,49 @@ The code is a port of the Python Nilsimsa implementation by Michael Itz to the J
   http://code.google.com/p/py-nilsimsa.
  
 Original C nilsimsa-0.2.4 implementation by cmeclax:
- http://ixazon.dynip.com/~cmeclax/nilsimsa.html
-
+  http://ixazon.dynip.com/~cmeclax/nilsimsa.html
 
 ## Requirements
 
-* Java 8 or higher
+* Java 8+
+
+## Maven Dependency
+
+```xml
+ <dependency>
+     <groupId>com.weblyzard.lib.string</groupId>
+     <artifactId>nilsimsa</artifactId>
+     <version>0.0.3</version>
+ </dependency>
+```
+
+## Examples
+
+### Compute and output the Nilsimsa hash
+
+```java
+String text = "A short test message"; 
+Nilsimsa n = Nilsimsa.getHash(text);
+System.out.println("Nilsimsa hash for message '" + text + "': " + n.hexdigest());
+```
+
+### Determine whether two strings are significantly different
+
+```java
+List<String> testList = Arrays.asList("A short test message", 
+                                      "A short test message!", 
+                                      "Something completely different");
+
+for (String firstString: testList) {
+    for (String secondString: testList) {
+        Nilsimsa firstHash = Nilsimsa.getHash(firstString);
+        Nilsimsa secondHash = Nilsimsa.getHash(secondString);
+
+        System.out.println("The hash value of text '" + firstString + '" and '" + secondString + "' differ in " + firstHash.bitwiseDifference(secondHash) + " bits.");
+    }
+}
+```
 
 ## Changelog
-* 0.0.4:
-  - slightly more efficient nilsimsa computation
-  - removed commons-lang3 dependency
-  - updated maven build chain
-
-* 0.0.3:
-  - reduced the number of necessary dependencies (commons-io and commons-codec)
-  - improved javadoc
-  - publish library on maven central
-
-* 0.0.2: 
-  - added support for hashing byte arrays and static constructors
-  - cache hash digest
-  - implemented `equals` and `hashCode`
-  - `compare` now uses the much faster Integer.bitcount method
-  - added `bitwiseDifference` which yields the number of bits that differ between hashes
-  - improved test coverage
-  - code cleanup
-
+Please refer to the [releases](releases) page.
 

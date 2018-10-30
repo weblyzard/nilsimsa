@@ -20,7 +20,7 @@ Original C nilsimsa-0.2.4 implementation by cmeclax:
  <dependency>
      <groupId>com.weblyzard.lib.string</groupId>
      <artifactId>nilsimsa</artifactId>
-     <version>0.0.3</version>
+     <version>0.0.5</version>
  </dependency>
 ```
 
@@ -32,6 +32,17 @@ Original C nilsimsa-0.2.4 implementation by cmeclax:
 String text = "A short test message"; 
 Nilsimsa n = Nilsimsa.getHash(text);
 System.out.println("Nilsimsa hash for message '" + text + "': " + n.hexdigest());
+```
+### Text similarity
+
+```java
+Nilsimsa first = Nilsimsa.getHash("A short test message");
+Nilsimsa second = Nilsimsa.getHash("A short test message!");
+Nilsimsa third = Nilsimsa.getHash("Something completely different");
+
+System.out.println(first.bitwiseDifference(first));    // 0
+System.out.println(first.bitwiseDifference(second));   // 3
+System.out.println(first.bitwiseDifference(third));    // 133
 ```
 
 ### Determine whether two strings are significantly different
@@ -46,11 +57,12 @@ for (String firstString: testList) {
         Nilsimsa firstHash = Nilsimsa.getHash(firstString);
         Nilsimsa secondHash = Nilsimsa.getHash(secondString);
 
-        System.out.println("The hash value of text '" + firstString + '" and '" + secondString + "' differ in " + firstHash.bitwiseDifference(secondHash) + " bits.");
+        System.out.println("The hash value of text '" + firstString + "' and '" 
+            + secondString + "' differ in " + firstHash.bitwiseDifference(secondHash) + " bits.");
     }
 }
 ```
 
 ## Changelog
-Please refer to the [releases](releases) page.
+Please refer to the [releases](/weblyzard/nilsimsa/releases) page.
 

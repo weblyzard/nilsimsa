@@ -125,7 +125,23 @@ public class NilsimsaTest {
         assertEquals(h, h);
         assertEquals(h, Nilsimsa.getHash("test"));
     }
+    
+    /**
+     * Tests the example from the README.md file.
+     */
+    @Test
+    public void readmeSimilarityTest() {
+    	Nilsimsa first = Nilsimsa.getHash("A short test message");
+    	Nilsimsa second = Nilsimsa.getHash("A short test message!");
+    	Nilsimsa third = Nilsimsa.getHash("Something completely different");
 
+    	
+    	assertEquals(0, first.bitwiseDifference(first));    
+    	assertEquals(3, first.bitwiseDifference(second));   
+    	assertEquals(133, first.bitwiseDifference(third));
+    }
+    
+ 
     /**
      * compile test mapping
      *

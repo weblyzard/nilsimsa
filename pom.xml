@@ -189,9 +189,7 @@
 						<id>checkstyle</id>
 						<phase>validate</phase>
 						<configuration>
-							<!-- <configLocation>google_checks.xml</configLocation> -->
-							<!-- <configLocation>https://raw.githubusercontent.com/weblyzard/checkstyle-rules/master/java/checkstyle_relaxed.xml</configLocation> -->
-							<configLocation>/home/albert/workspace/checkstyle-rules/java/checkstyle.xml</configLocation>
+							<configLocation>https://raw.githubusercontent.com/weblyzard/checkstyle-rules/master/java/checkstyle_relaxed.xml</configLocation>
 							<encoding>UTF-8</encoding>
 							<consoleOutput>true</consoleOutput>
 							<linkXRef>false</linkXRef>

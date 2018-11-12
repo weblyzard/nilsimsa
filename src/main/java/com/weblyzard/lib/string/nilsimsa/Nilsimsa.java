@@ -129,6 +129,7 @@ public class Nilsimsa {
             return digest;
         }
         int total = 0;
+        digest = new byte[32];
         Arrays.fill(digest, (byte) 0);
 
         if (count == 3) {

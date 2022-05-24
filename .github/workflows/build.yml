@@ -24,7 +24,7 @@ jobs:
           distribution: 'temurin'
           java-version: ${{ matrix.java }}
           cache: 'maven'
-      - env:
+        env:
           SONAR_LOGIN: ${{ secrets.SONAR_LOGIN }}
           SONAR_HOST: ${{ secrets.SONAR_HOST }}
       - run: mvn -B package --file pom.xml org.jacoco:jacoco-maven-plugin:prepare-agent install -DskipITs -Dgpg.skip=true -Dmaven.test.failure.ignore=false -Dsonar.login=$SONAR_LOGIN -Dsonar.host.url=$SONAR_HOST

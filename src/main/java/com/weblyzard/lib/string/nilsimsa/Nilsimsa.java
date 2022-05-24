@@ -63,9 +63,10 @@ public class Nilsimsa {
     }
 
     /**
-     * Updates the Nilsimsa digest using the given String.
+     * Updates the Nilsimsa digest with the given byte array.
      *
-     * @param data the data to consider in the update
+     * @param data the data to consider in the update.
+     * @return The updated Nilsimsa object.
      */
     public Nilsimsa update(byte[] data) {
         for (int ch : data) {
@@ -98,12 +99,20 @@ public class Nilsimsa {
         return this;
     }
 
+    /**
+     * Update the current Nilsimsa object with the given String s.
+     * 
+     * @param s the String to add to the hash.
+     * @return The updated Nilsimsa object.
+     */
     public Nilsimsa update(String s) {
         return update(s.getBytes());
     }
 
     /**
-     * Resets the Hash computation.
+     * Reset the Hash computation.
+     * 
+     * @return A reset (i.e., empty) Nilsimsa object.
      */
     public Nilsimsa reset() {
         count = 0;
@@ -122,7 +131,9 @@ public class Nilsimsa {
     }
 
     /**
-     * Returns the digest for the current Nilsimsa object.
+     * Return the digest for the current Nilsimsa object.
+     * 
+     * @return The digest of the current Nilsimsa object.
      */
     public byte[] digest() {
         if (digest != null) {
@@ -154,7 +165,7 @@ public class Nilsimsa {
      * Compute the Nilsimsa digest for the given String.
      *
      * @param s the String to hash
-     * @return the Nilsimsa digest.
+     * @return The Nilsimsa digest.
      */
     public byte[] digest(String s) {
         return digest(s.getBytes());
@@ -165,7 +176,7 @@ public class Nilsimsa {
      * Compute the Nilsimsa digest for the given String.
      *
      * @param data an array of bytes to hash
-     * @return the Nilsimsa digest.
+     * @return The Nilsimsa digest.
      */
     public byte[] digest(byte[] data) {
         reset();
@@ -174,29 +185,29 @@ public class Nilsimsa {
     }
 
     /**
-     * Computes the Nilsimsa digest for the given byte array.
+     * Compute the Nilsimsa digest for the given byte array.
      *
      * @param data to hash
-     * @return the byte array's Nilsimsa hash.
+     * @return The byte array's Nilsimsa hash.
      */
     public static Nilsimsa getHash(byte[] data) {
         return new Nilsimsa().update(data);
     }
 
     /**
-     * Computes the Nilsimsa digest for the given String.
+     * Compute the Nilsimsa digest for the given String.
      *
      * @param s the String to hash
-     * @return the String's Nilsimsa hash.
+     * @return The String's Nilsimsa hash.
      */
     public static Nilsimsa getHash(String s) {
         return getHash(s.getBytes());
     }
 
     /**
-     * Returns the hex digest of the current Nilsimsa object.
+     * Return the hex digest of the current Nilsimsa object.
      *
-     * @return a String representation of the current state of the Nilsimsa object.
+     * @return A String representation of the current state of the Nilsimsa object.
      */
     public String hexdigest() {
         StringBuilder s = new StringBuilder();
@@ -210,7 +221,7 @@ public class Nilsimsa {
      * Compute the Nilsimsa hexDigest for the given String.
      *
      * @param data an array of bytes to hash
-     * @return the Nilsimsa hexdigest.
+     * @return The Nilsimsa hexdigest.
      */
     public String hexdigest(byte[] data) {
         digest(data);
@@ -221,7 +232,7 @@ public class Nilsimsa {
      * Compute the Nilsimsa hexDigest for the given String.
      *
      * @param s the String to hash
-     * @return the Nilsimsa hexdigest.
+     * @return The Nilsimsa hexdigest.
      */
     public String hexdigest(String s) {
         digest(s);
@@ -229,10 +240,10 @@ public class Nilsimsa {
     }
 
     /**
-     * Compares a Nilsimsa object to the current one and return the number of bits that differ.
+     * Compare a Nilsimsa object to the current one and return the number of bits that differ.
      *
      * @param cmp the comparison Nilsimsa object
-     * @return the number of bits in which the Nilsimsa digests differ.
+     * @return The number of bits in which the Nilsimsa digests differ.
      */
     public int bitwiseDifference(Nilsimsa cmp) {
         int distance = 0;
@@ -251,11 +262,11 @@ public class Nilsimsa {
     }
 
     /**
-     * Returns a value between -128 and + 128 that indicates the difference between the nilsimsa digest
+     * Return a value between -128 and + 128 that indicates the difference between the nilsimsa digest
      * of the current object and cmp.
      *
      * @param cmp comparison Nilsimsa object
-     * @return a value between -128 (no matching bits) and 128 (all bits match; both hashes are equal)
+     * @return A value between -128 (no matching bits) and 128 (all bits match; both hashes are equal)
      */
     public int compare(Nilsimsa cmp) {
         return 128 - bitwiseDifference(cmp);

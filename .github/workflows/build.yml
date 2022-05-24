@@ -17,13 +17,13 @@ jobs:
       fail-fast: false
       matrix:
         java_version: [1.8, 11, 17]
-        distribution: ['temurin']
     steps:
     - uses: actions/checkout@v3
     - name: Set up JDK $
       uses: actions/setup-java@v3
       with:
         java-version: $
+        distribution: 'temurin'
         cache: maven
     - name: Build with Maven
       run: mvn -B package --file pom.xml org.jacoco:jacoco-maven-plugin:prepare-agent install -DskipITs -Dgpg.skip=true -Dmaven.test.failure.ignore=false
